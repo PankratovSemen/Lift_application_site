@@ -1,0 +1,290 @@
+*{
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+body, html
+{
+	width: 100%;
+	height: 100%;
+}
+
+body
+{
+	background-color: #badcc8;
+	font-family: Comic Sans MS;
+}
+header
+{
+	width: 100%;
+	padding: 10px 0.5% 0px 0.5%;
+	background: transparent/*#dcbace*/;
+	float: left;
+	position: fixed;
+}
+header #logo
+{
+	color: #FFFFFF;
+	cursor: pointer;
+}
+header #logo span
+{
+	font-size: 1.7em;
+	line-height: 45px;
+	margin-left: 40px;
+	font-family: Comic Sans MS;
+}
+@media (min-width: 701px) 
+{ #logo 
+	{
+		float: left;
+		width: 30%;
+		font-size: 25px;
+	}
+	#about
+	{
+		float: right;
+		width: 67%;
+		
+	}
+}
+@media (max-width: 700px) 
+{ #logo 
+	{
+		margin-top: 15px;
+		float: left;
+		width: 100%;
+		font-size: 1.5em;
+	}
+	#about
+	{
+		float: left;
+		width: 100%;
+	}
+}
+#about
+{
+	text-align: center;
+	font-size: 1em;
+	line-height: 40px;
+	margin-bottom: 10px;
+	color: #FFAA00;
+}
+#about > a {color:#FFAA00;} /*Цвет ссылок*/
+#about > a:hover {color:#5660eb; text-decoration: underline;} /*Цвет ссылок при наведении*/
+#about > a:not(:last-child) /*Отступ между ссылками*/
+{
+	margin-right: 7%;
+}
+.fixed
+{
+	z-index: 5000;
+	background-color: #9e91eb; /*Цвет шапки*/
+	border-bottom: 1px solid silver;
+}
+
+header.fixed #logo
+{
+	color: #FFAA00;
+}
+.fixed #about a{color:#FFAA00;}
+.fixed #about a:hover {color:#5660eb;}
+
+#top {
+	width: 100%;
+	background-image: url(../img/background.jpg);
+	background-blend-mode: multiply;
+	background-color: #91afe8;
+	background-size: cover;
+	text-align: center;
+	color: #FFAA00;
+	font-size: 3em;
+}
+@media (min-width: 1001px) 
+{ #top 
+	{
+		font-size: 3em;
+		height: 1000px;
+	}
+}
+@media (max-width: 1000px) and (min-width: 651px)
+{ #top 
+	{
+		font-size: 2em;
+		height: 600px;
+	}
+}
+@media (max-width: 650px) 
+{ #top 
+	{
+		font-size: 1.3em;
+		padding-top: 50%;
+		height: 490px;
+	}
+}
+
+
+#top h1 
+{
+	padding-top: 20%;
+	color: #FFAA00;
+}
+/*#top h3
+{
+	color: #000000;
+}*/
+#main
+{
+	padding: 100px 20%;
+	width: 60%;
+	float: left;
+	background-color: #FFAA00;
+	border-top: 2px solid silver;
+	/*color: #000000;*/ 
+	font-size: 1.3em;
+}
+@media (min-width: 1401px;)/*Отвечает за масштабирование при изменении размера*/
+{#main
+	{
+		padding: 100px 20%;
+		width: 60%;
+	}
+}
+@media (min-width: 1400px;)/*Отвечает за масштабирование при изменении размера*/
+{#main
+	{
+		padding: 100px 10%;
+		width: 80%;
+	}
+}
+@media (max-width: 700px;)/*Отвечает за масштабирование при изменении размера*/
+{#main div
+	{
+		width: 98%! important;
+		margin-bottom: 20px;
+	}
+}
+/*#main div
+{
+width: 48%;
+margin-right: 2%;
+float: left;
+}*/
+/*#main h2 {font-size: 3em;}*/
+/*#main span {color: #000000;}*/
+#overview
+{
+	float: left;
+	/*background-image: url(Какая-то картинка, но зачем ???);*/
+	background-blend-mode: multiply;
+	/*background-color: ; */
+	background-size: cover;
+	background-attachment: fixed;
+	padding: 100px 0;
+	width: 100%;
+	text-align: center;
+	/*color: ; */
+}
+/*#overview h2 {font-size: 4em;}*/
+/*#overview h4 {color: #000000; font-size: 1.5em;}*/
+#overview .img 
+{
+	float: left;
+	width: 30%;
+	margin-right: 5%;
+	margin-top: 50px;
+}
+#overview .img:nth-child(odd)
+{
+margin-left: 18%;
+}
+#overview img
+{
+	/*background:Цвет;*/ /*Подбери нормальный цвет*/
+	padding: 5px;
+	border: 2px solid silver;
+	float: left;
+	width: 100%;
+	max-width: 500px;
+}
+#overview span
+{
+float: left;
+width: 100%;
+font-size: 2em;
+margin-top: 10px;
+}
+@media (max-width: 700px)
+{#overview .img
+	{
+		width: 80!important;
+		margin-right: 0!important;
+		margin-left: 10%!important;
+	}
+}
+#contacts
+{
+	width: 100%;
+	float: left;
+	padding-bottom: 40px;
+	padding-top: 70px;
+	border-top: 4px solid silver;
+	/*background: ;*/ /*Бесполезная строчка*/
+}
+h1, h2, h3, h4, h5
+{
+	font-family: "Comic Sans MS";
+	font-weight: lighter; /*Разницу не заметил*/
+	
+}
+#contacts h5 {font-size: 3em; /*color: ;*/}
+#form_input /*Форма обратной связи*/
+{
+margin-top: 15px;
+width: 35%;
+margin-left: 38%;
+font-size: 1.1em;
+}
+#form_input label
+{
+	/*color: ;*/ 
+	cursor: pointer;
+	font-size: 1.4em;
+	/*font-family: "";*/
+}
+#form_input label > span 
+{
+/*color: */
+}
+
+/*Тут начинается работа с полями ввода*/
+#form_input input, #form_input textarea
+{
+	margin-bottom: 10px;
+	width: 70%;
+	padding: 10px 2%;
+	border-radius: 7px;
+	border: 2px solid silver;
+	font-size: 0.9em;
+}
+#form_input input:focus, #form_input textarea:focus
+{
+	border-color: #000000;
+
+}
+.button
+{
+	float: left;
+	border-radius: 5px;
+	padding: 5px 9px;
+	font-size: 1.2em;
+	background-color: #efb04f; /*Цвет кнопки*/
+	text-shadow: #454545 0 0 2px;
+	cursor: pointer;
+	color: #000000;
+	/*font-family: ; /*Ненужная строка*/
+}
+.button: hover
+{
+	color: #ed0c14; /*Цвет кнопки при наведении*/
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Lift_application.Models.Articles>
+
+@using Lift_application.Models;
+
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Главная</title>
+</head>
+<body>
+    <h3>Материалы</h3>
+    
+        
+        @foreach (var phone in Model)
+        {
+            
+
+        @if(phone.SourceInfo == "")
+        {
+            <h2>@phone.Title</h2>
+            <p>@phone.Description</p>
+        }
+        else
+        {
+            <h2>@phone.Title</h2>
+            <p>@phone.Description</p>
+            <p>Источник: @phone.SourceInfo</p>
+        }
+
+    }
+    
+    
+</body>
+</html>
