@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Главная";
+    
 }
 
 <!DOCTYPE html>
@@ -11,6 +12,14 @@
 <html>
 <head>
     <title>Главная</title>
+
+    <style>
+        .brd
+        {
+             background:gray;
+             padding:20px;
+        }
+    </style>
 </head>
 <body>
     <h3>Материалы</h3>
@@ -22,14 +31,20 @@
 
         @if(phone.SourceInfo == "")
         {
-            <h2>@phone.Title</h2>
+           <div class="brd">
+                <h2><a href="~/Home/Articles/@phone.Id">@phone.Title</a></h2>
             <p>@phone.Description</p>
+           </div>
+           <br/>
         }
         else
         {
-            <h2>@phone.Title</h2>
-            <p>@phone.Description</p>
-            <p>Источник: @phone.SourceInfo</p>
+            <div class="brd">
+                <h2>@phone.Title</h2>
+                <p>@phone.Description</p>
+                <p>Источник: <a href="@phone.SourceInfo">@phone.SourceInfo</a></p>
+            </div>
+            <br />
         }
 
     }
