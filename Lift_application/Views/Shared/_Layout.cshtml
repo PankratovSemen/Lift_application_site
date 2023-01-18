@@ -13,11 +13,14 @@
         </div>
         <div id="about">
             
-            <a asp-controller="Home" asp-action="Index" title="Главная" onclick="slowScroll('#Что-то')">Главная</a>
-            <a asp-controller="Home" asp-action="About" title="Что-то" onclick="slowScroll('#Что-то')">О проекте</a>
-            <a href="#" title="Что-то" onclick="slowScroll('#Что-то')">Что-то</a>
-            <a href="#" title="Что-то" onclick="slowScroll('#Что-то')">Что-то</a>
-            </div>
+            
+                <a asp-controller="Home" asp-action="Index" title="Главная" onclick="slowScroll('#Что-то')">Главная</a>
+                <a asp-controller="Home" asp-action="About" title="Что-то" onclick="slowScroll('#Что-то')">О проекте</a>
+              
+                <a><partial name="_LoginPartial.cshtml" /></a>
+        
+        
+        </div>
     </header>
     <div id="top">
         <h1>@ViewData["Title"]</h1>

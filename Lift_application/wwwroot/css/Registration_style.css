@@ -1,0 +1,155 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: #fff; /*Фон при прогрузке изображения*/
+color: #fff;
+  font-family: Comic Sans MS;
+  font-size: 12px;
+}
+
+.body{
+  position: absolute; /*Положение картинки на экране*/
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background-image: url(https://mota.ru/upload/wallpapers/2022/03/09/05/01/79543/art-abstraction-colorful.jpg);
+    /*background-image: url(https://avatars.mds.yandex.net/i?id=971b3c74a29c18a1bd23bb88e59ef7ff88fd66cf-8494072-images-thumbs&n=13); /*Картинка фона*/*/
+  background-size: cover;
+  -webkit-filter: blur(1000px); /*Степень размытия картинки, (четкость)*/ 
+  z-index: 0;
+}
+
+.gradient{
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));   /*Яркость, контраст, оттенки*/
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.header{ /*Отвечает за слово и окна ввода*/
+  position: absolute;
+  top: calc(50% - 138px);
+  left: calc(50% - 300px);
+  z-index: 2;
+}
+
+.header div{
+  float: left;
+  color: #fff;
+  font-family: Comic Sans MS;
+  font-size: 35px;
+  font-weight: 200;
+}
+
+.header div span{
+  color: #5379fa !important; /*Цвет правой половины слова*/
+}
+
+.Registration{
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - -100px); /*Выравнивание окон ввода по горизонтале*/ 
+  height: 150px;
+  width: 350px;
+  padding: 50px;
+  z-index: 2;
+}
+
+.Registration input[type=email]{
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 300px; /*Форма окна ввода*/
+  color: #fff;
+  font-family: Comic Sans MS;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+}
+
+.Registration input[type=login]{
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 300px; /*Форма окна ввода*/
+  color: #fff;
+  font-family: Comic Sans MS;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+    margin-top: 20px;
+}
+.Registration input[type=password]{
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 300px; /*Форма окна ввода*/
+  color: #fff;
+  font-family: Comic Sans MS;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+  margin-top: 20px;
+}
+
+.Registration input[type=button]{
+  width: 260px;
+  height: 35px;
+  background: #bbc4fc;
+  border: 1px solid #fff;
+  cursor: pointer;
+  border-radius: 100px;
+  color: #606169;
+  font-family: Comic Sans MS;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px;
+  margin-top: 40px;
+}
+
+.Registration input[type=button]:hover{
+  opacity: 0.8;
+}
+
+.login input[type=button]:active{
+  opacity: 0.6;
+}
+
+.Registration input[type=email]:focus{
+  outline: none;
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.Registration input[type=login]:focus{
+  outline: none;
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.Registration input[type=password]:focus{
+  outline: none;
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.Registration input[type=button]:focus{
+  outline: none;
+}
+
+::-webkit-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}

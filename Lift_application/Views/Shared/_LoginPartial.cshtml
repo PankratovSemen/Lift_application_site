@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Lift_application.Areas.Identity.Data
+
+@inject SignInManager<Lift_applicationUser> SignInManager
+@inject UserManager<Lift_applicationUser> UserManager
+
+
+    
+
+@if (SignInManager.IsSignedIn(User))
+{
+    
+      <style>
+        #past{
+            padding:5px;
+            margin-left:20px;
+        }
+
+        #manage{
+            color:white;
+        }
+      </style>
+        <table>
+            <tr>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+
+                
+        <form class="form-inline" asp-controller="Login" asp-action="Logout_" method="post">
+            <button type="submit" class="nav-link btn btn-link text-dark" id="past">Выйти</button>
+        </form>
+            </tr>
+        </table>
+      
+    
+}
+else
+{
+    
+        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+    
+    
+        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+   
+}
+</ul>

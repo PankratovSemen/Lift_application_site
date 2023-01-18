@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff; /*Фон при прогрузке изображения*/
+    color: #fff;
+    font-family: Comic Sans MS;
+    font-size: 12px;
+}
+
+.backgrounder {
+    position: absolute; /*Положение картинки на экране*/
+    top: -20px;
+    left: -20px;
+    right: -40px;
+    bottom: -40px;
+    width: auto;
+    height: auto;
+    background-image: url(../img/background2.jpg); /*Картинка фона*/
+    background-size: cover;
+    filter:blur(120px);
+}
+
+.gradient {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -40px;
+    bottom: -40px;
+    width: auto;
+    height: auto;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /*Яркость, контраст, оттенки*/
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.header { /*Отвечает за слово и окна ввода*/
+    position: absolute;
+    top: calc(50% - 138px);
+    left: 40%;
+    z-index: 2;
+}
+
+    .header div {
+        float: left;
+        color: #fff;
+        font-family: Comic Sans MS;
+        font-size: 35px;
+        font-weight: 200;
+        margin-left:-120px;
+    }
+
+        .header div span {
+            color: #5379fa !important; /*Цвет правой половины слова*/
+        }
+
+.Registration {
+    position: absolute;
+    top: 50%;
+    left: 35%; /*Выравнивание окон ввода по горизонтале*/
+    height: 150px;
+    width: 350px;
+    padding: 50px;
+    z-index: 2;
+}
+
+    .Registration input[type=email] {
+        width: 250px;
+        height: 30px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: 300px; /*Форма окна ввода*/
+        color: #fff;
+        font-family: Comic Sans MS;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 4px;
+    }
+
+    .Registration input[type=login] {
+        width: 250px;
+        height: 30px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: 300px; /*Форма окна ввода*/
+        color: #fff;
+        font-family: Comic Sans MS;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 4px;
+        margin-top: 20px;
+    }
+
+    .Registration input[type=password] {
+        width: 250px;
+        height: 30px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: 300px; /*Форма окна ввода*/
+        color: #fff;
+        font-family: Comic Sans MS;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 4px;
+        margin-top: 20px;
+    }
+
+    #but {
+        width: 260px;
+        height: 35px;
+        background: #bbc4fc;
+        border: 1px solid #fff;
+        cursor: pointer;
+        border-radius: 100px;
+        color: #606169;
+        font-family: Comic Sans MS;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 6px;
+        margin-top: 70px;
+        margin-left:-160px;
+    }
+
+        #but:hover {
+            opacity: 0.8;
+        }
+
+        #but:active {
+            opacity: 0.6;
+        }
+
+.Registration input[type=email]:focus {
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.Registration input[type=login]:focus {
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.Registration input[type=password]:focus {
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+#but:focus {
+    outline: none;
+}
+
+::-webkit-input-placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder {
+    color: rgba(255,255,255,0.6);
+}
+#links{
+    font-size:20px;
+    z-index:auto;
+    margin-left:70%;
+    margin-top:30px;
+    
+    
+    
+    
+
+}
+#links a {
+    font-size: 20px;
+    z-index: auto;
+    margin-left: 70%;
+    margin-top: 40px;
+    background-color:blue;
+    padding:10px;
+    color:white;
+    border-radius:10px;
+}
+
+
+a{
+    color:white;
+    font-size:15px;
+
+}
+
+label {
+    color: white;
+    font-size: 15px;
+}
