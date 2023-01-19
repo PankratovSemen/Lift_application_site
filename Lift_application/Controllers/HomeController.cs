@@ -7,35 +7,55 @@ using Microsoft.Owin;
 using Microsoft.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Lift_application.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lift_application.Controllers
 {
-
+    
     public class HomeController : Controller
     {
+        SignInManager<Lift_applicationUser> signInManager;
         ArticlesContext db;
         Articles art = new Articles();
-        public HomeController(ArticlesContext context)
+        public HomeController(ArticlesContext context, SignInManager<Lift_applicationUser> sign)
         {
             db = context;
+            signInManager = sign;
         }
         public IActionResult Index()
         {
             return View(db.Articles.ToList());
 
         }
-        [Authorize]
+        
         public IActionResult About()
         {
+            var role = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role: manage";
+             var claims = User.Claims.ToList();
+            if (signInManager.IsSignedIn(User))
+            {
+                if (claims[4].ToString() == role)
+                {
+                    return View();
+                }
 
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    // get user's claims
+                else
+                {
+                    return RedirectToAction("Block", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Block", "Home");
+            }
+                
 
-            //    return View(claims);
 
-            //}
-           
+
+        }
+        public IActionResult Block()
+        {
             return View();
         }
         public string Word()

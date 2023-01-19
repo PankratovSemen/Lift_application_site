@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace Lift_application.Areas.Identity.Pages.Account
 {
@@ -24,11 +25,13 @@ namespace Lift_application.Areas.Identity.Pages.Account
         
         private readonly SignInManager<Lift_applicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private UserManager<Lift_applicationUser> userManager;
 
-        public LoginModel(SignInManager<Lift_applicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Lift_applicationUser> signInManager, ILogger<LoginModel> logger,UserManager<Lift_applicationUser> usrmgr)
         {
             _signInManager = signInManager;
             _logger = logger;
+            userManager = usrmgr;
         }
 
         /// <summary>
@@ -97,7 +100,7 @@ namespace Lift_application.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            //await HttpContext.SignOutAsync("Cookie");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             
@@ -108,7 +111,8 @@ namespace Lift_application.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
+            
+           
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)

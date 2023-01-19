@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Lift_application.Areas.Identity.Data;
 using Lift_application.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+
+
 
 namespace Lift_application
 {
@@ -29,50 +32,13 @@ namespace Lift_application
             var builder = services.AddIdentityCore<IdentityUser>();
             builder.AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<AuthContext>();
-             
-            builder.Services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Identity/Account/Login");
 
-            services.AddRazorPages();
-            builder.Services.Configure<IdentityOptions>(options =>
-            {
-                // Default Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
-            });
+            
 
-            builder.Services.Configure<IdentityOptions>(options =>
-            {
-                // Default Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
-            });
-
-
-            builder.Services.ConfigureApplicationCookie(options =>
-            {
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-                options.Cookie.Name = "YourAppCookieName";
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                options.LoginPath = "/Identity/Account/Login";
-                // ReturnUrlParameter requires 
-                //using Microsoft.AspNetCore.Authentication.Cookies;
-                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-                options.SlidingExpiration = true;
-            });
-
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
-                options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
-                options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-            });
+            
+            services.AddControllersWithViews();
+            //services.AddRazorPages();
+            
 
         }
 
