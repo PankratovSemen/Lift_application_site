@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PTe7tyjf31FCYZS82dZcRRONuiEGte2PO3OWLSUo17xdUTfV0nsBpcZSmLE0oFx6APDTJjfcZCtXbEUxHxzxIA==",
+  "dgSpecHash": "tLs0SsdFRL5WhdsF2N+NyJ3dH9xKTbERmBKgLW25MV8pWGX7heaqoMsq/CLVQ5GoBDGnxv3JFct2/gM1vae4ig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\Lift_application.csproj",
+  "projectFilePath": "C:\\Users\\Семён\\Documents\\girhub\\1\\Lift_application_site\\Lift_application\\Lift_application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Семён\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Семён\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

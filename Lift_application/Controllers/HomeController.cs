@@ -31,25 +31,8 @@ namespace Lift_application.Controllers
         
         public IActionResult About()
         {
-            var role = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role: manage";
-             var claims = User.Claims.ToList();
-            if (signInManager.IsSignedIn(User))
-            {
-                if (claims[4].ToString() == role)
-                {
-                    return View();
-                }
 
-                else
-                {
-                    return RedirectToAction("Block", "Home");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Block", "Home");
-            }
-                
+            return View();            
 
 
 

@@ -22,7 +22,7 @@
       </style>
         <table>
             <tr>
-                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <a id="manage" class="nav-link text-dark" asp-controller="UserPanel" title="Manage">Привет, @UserManager.GetUserName(User)!</a>
 
                 
         <form class="form-inline" asp-controller="Login" asp-action="Logout_" method="post">
