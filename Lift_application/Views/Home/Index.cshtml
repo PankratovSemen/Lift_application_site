@@ -29,7 +29,7 @@
         {
             
 
-        @if(phone.SourceInfo == "")
+        @if(phone.SourceInfo == "" || phone.SourceInfo == "My" || phone.SourceInfo =="-")
         {
            <div class="brd">
                 <h2><a href="~/Home/Articles/@phone.Id">@phone.Title</a></h2>

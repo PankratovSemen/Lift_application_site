@@ -13,7 +13,9 @@
     
     if (User.IsInRole("admin"))
     {
-        <p>adminPanel</p>
+        <h1>AdminPanel</h1>
+
+        <a asp-controller="UserPanel" asp-action="Publish">Публикация статей</a>
     }
     else
     {
@@ -24,5 +26,4 @@
 
 else
 {
-    <p>Выполните авторизацию чтобы продолжить</p>
 }
