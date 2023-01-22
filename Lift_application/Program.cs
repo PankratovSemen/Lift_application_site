@@ -25,6 +25,9 @@ namespace Lift_application
                 {
                     var context = services.GetRequiredService<ArticlesContext>();
                     SampleData.Initialize(context);
+
+                    var contextSend = services.GetRequiredService<EmailForSendContext>();
+                    SamoleDataSend.Initialize(contextSend);
                 }
                 catch (Exception ex)
                 {

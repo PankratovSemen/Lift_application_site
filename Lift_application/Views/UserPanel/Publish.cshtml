@@ -28,16 +28,10 @@
     @Html.LabelFor(model => model.Author, "Автор")
     <br/>
     @Html.EditorFor(model => model.Author)
-    <br /> <br />
+    
     <input type="hidden" name="date" value="@DateTime.UtcNow" />
-    @*@Html.LabelFor(model => model.date, "Дата публикации")
-    <br />
-    @Html.EditorFor(model => model.date)*@
-    <br /> <br />
-    @*@Html.LabelFor(model => model.SourceInfo, "Источник")
-    <br />*@
-  @*  @Html.EditorFor(model => model.SourceInfo)*@
+    
     <input type="hidden" name="SourceInfo" value="My"/>
-    <br /> <br />
+    
         <input type="submit" value="Опубликовать" />
 }

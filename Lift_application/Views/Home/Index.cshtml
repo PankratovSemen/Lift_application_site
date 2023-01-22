@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Lift_application.Models.Articles>
-
+@using Lift_application.Areas.Identity.Data
 @using Lift_application.Models;
 
 @{
@@ -21,6 +21,8 @@
         }
     </style>
 </head>
+@inject SignInManager<Lift_applicationUser> SignInManager;
+@inject UserManager<Lift_applicationUser> UserManager
 <body>
     <h3>Материалы</h3>
     
@@ -33,16 +35,32 @@
         {
            <div class="brd">
                 <h2><a href="~/Home/Articles/@phone.Id">@phone.Title</a></h2>
-            <p>@phone.Description</p>
+            <p>@phone.Description ...</p>
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                if(User.IsInRole("admin"))
+                {
+                    <a href="~/UserPanel/Delete/@phone.Id">Удалить</a>
+                }
+            }
            </div>
-           <br/>
+            <br/>
+            
         }
         else
         {
             <div class="brd">
                 <h2>@phone.Title</h2>
-                <p>@phone.Description</p>
+                <p>@phone.Description ...</p>
                 <p>Источник: <a href="@phone.SourceInfo">@phone.SourceInfo</a></p>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        <a href="~/UserPanel/Delete/@phone.Id">Удалить</a>
+                    }
+                }
             </div>
             <br />
         }

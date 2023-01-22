@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Lift_application.Models.Articles
+<h2>Удаление книги</h2>
+<dl>
+    <dt>Название</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+
+    <dt>Автор</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Author)
+    </dd>
+
+    <dt>Описание</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Удалить" />
+}

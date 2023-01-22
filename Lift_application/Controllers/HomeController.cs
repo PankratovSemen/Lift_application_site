@@ -18,10 +18,12 @@ namespace Lift_application.Controllers
         SignInManager<Lift_applicationUser> signInManager;
         ArticlesContext db;
         Articles art = new Articles();
-        public HomeController(ArticlesContext context, SignInManager<Lift_applicationUser> sign)
+        SenderEmailContext senders;
+        public HomeController(ArticlesContext context, SignInManager<Lift_applicationUser> sign, SenderEmailContext senders1)
         {
             db = context;
             signInManager = sign;
+            senders = senders1;
         }
         public IActionResult Index()
         {
@@ -31,8 +33,8 @@ namespace Lift_application.Controllers
         
         public IActionResult About()
         {
-
-            return View();            
+            
+            return View(senders.ArticlesSender.ToList());            
 
 
 

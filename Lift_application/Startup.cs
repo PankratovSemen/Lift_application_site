@@ -13,6 +13,7 @@ using System.Security.Claims;
 
 
 
+
 namespace Lift_application
 {
     public class Startup
@@ -28,6 +29,9 @@ namespace Lift_application
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ArticlesContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<EmailForSendContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<SenderEmailContext>(options => options.UseSqlServer(connection));
+
             services.AddControllersWithViews();
             var builder = services.AddIdentityCore<IdentityUser>();
             builder.AddRoles<IdentityRole>()
