@@ -1177,3 +1177,6 @@ C:\Users\Семён\Documents\girhub\1\Lift_application_site\Lift_application\ob
 C:\Users\Семён\Documents\girhub\1\Lift_application_site\Lift_application\obj\Debug\net6.0\Lift_application.pdb
 C:\Users\Семён\Documents\girhub\1\Lift_application_site\Lift_application\obj\Debug\net6.0\Lift_application.genruntimeconfig.cache
 C:\Users\Семён\Documents\girhub\1\Lift_application_site\Lift_application\obj\Debug\net6.0\ref\Lift_application.dll
+C:\Users\Семён\source\repos\PankratovSemen\Lift_application_site\Lift_application\bin\Debug\net6.0\MailKit.dll
+C:\Users\Семён\source\repos\PankratovSemen\Lift_application_site\Lift_application\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Семён\source\repos\PankratovSemen\Lift_application_site\Lift_application\bin\Debug\net6.0\BouncyCastle.Crypto.dll

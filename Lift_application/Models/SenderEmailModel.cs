@@ -7,10 +7,11 @@ namespace Lift_application.Models
     {
         [Key]
         public int Id { set; get; }
-        public List<EmailForSend> email { set; get; }
+       
 
         public string Title { set; get; }
         public string Subject { set; get; }
+        [DataType(DataType.MultilineText)]
         public string TextMessage { set; get; }
         public string StatusSend { set; get; }
 

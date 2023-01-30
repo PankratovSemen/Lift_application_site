@@ -3,6 +3,7 @@ using Lift_application.Data;
 using Lift_application.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Lift_application.Services;
 
 namespace Lift_application.Controllers
 {
@@ -12,14 +13,15 @@ namespace Lift_application.Controllers
         ArticlesContext db;
         EmailForSendContext emsend;
         string Emails;
+        SenderEmailContext SenderEmailContext;
       
 
-        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1) 
+        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail) 
         { 
             SignInManager = signInManager;
             db = context;
             emsend = context1;
-           
+            SenderEmailContext = senderEmail;
            
         }
 
@@ -119,10 +121,36 @@ namespace Lift_application.Controllers
             
             
         }
-        //[HttpPost]
-        //public ActionResult Sender(string Email)
-        //{
+        [HttpGet]
+        public ActionResult CreateSender()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task <ActionResult> CreateSender(SenderEmailModel senderEmailModel)
+        {
+            MailSenderService mailSender = new MailSenderService();
+
+
+                var sends = new SenderEmailModel
+                {
+                    
+                Title = senderEmailModel.Title,
+                    Subject = senderEmailModel.Subject,
+                    TextMessage = senderEmailModel.TextMessage,
+                    StatusSend = senderEmailModel.StatusSend
+                };
+                SenderEmailContext.ArticlesSender.Add(sends);
+                SenderEmailContext.SaveChanges();
+            foreach(var emailspost in emsend.EmailForSend)
+            {
+                await mailSender.SendEmailAsync(emailspost.Email, senderEmailModel.Subject, senderEmailModel.TextMessage);
+            }
             
-        //}
+            return Redirect("CreateSender");
+            
+            
+            
+        }
     }
 }

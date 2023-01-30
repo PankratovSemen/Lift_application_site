@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Обо мне";
 }
-@model Lift_application.Models.SenderEmailModel
+@model IEnumerable<Lift_application.Models.EmailForSend>
 <!DOCTYPE html>
 
 <html>
@@ -11,6 +11,11 @@
     <title>About</title>
 </head>
 <body>
-    <p>@Html.Raw(Model.email)</p>
+    @foreach(var Emsender in Model)
+    {
+        <p>@Html.Raw(Emsender.Email)</p>
+    }
+    
+
 </body>
 </html>

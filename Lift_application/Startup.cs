@@ -31,6 +31,7 @@ namespace Lift_application
             services.AddDbContext<ArticlesContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<EmailForSendContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<SenderEmailContext>(options => options.UseSqlServer(connection));
+           
 
             services.AddControllersWithViews();
             var builder = services.AddIdentityCore<IdentityUser>();

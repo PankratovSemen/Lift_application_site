@@ -21,23 +21,6 @@ namespace Liftapplication.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Lift_application.Models.EmailForSend", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmailForSend");
-                });
-
             modelBuilder.Entity("Lift_application.Models.SenderEmailModel", b =>
                 {
                     b.Property<int>("Id")
@@ -62,25 +45,9 @@ namespace Liftapplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("emailId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("emailId");
-
                     b.ToTable("ArticlesSender");
-                });
-
-            modelBuilder.Entity("Lift_application.Models.SenderEmailModel", b =>
-                {
-                    b.HasOne("Lift_application.Models.EmailForSend", "email")
-                        .WithMany()
-                        .HasForeignKey("emailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("email");
                 });
 #pragma warning restore 612, 618
         }

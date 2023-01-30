@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Lift_application.Models
+
+@model Lift_application.Models.SenderEmailModel
+
+
+@using (Html.BeginForm())
+{
+    
+       @Html.LabelFor(model=>model.Title,"Название письма")
+       <br />
+        @Html.EditorFor(model => model.Title)
+        <br />
+        <br />
+    @Html.LabelFor(model=>model.Subject,"Тема письма")
+    <br />
+        @Html.EditorFor(model => model.Subject)
+        <br />
+        <br />
+    @Html.LabelFor(model=>model.TextMessage,"Текст рассылки")
+    <br />
+        @Html.EditorFor(model => model.TextMessage)
+
+        <br />
+        <br />
+        <input type="hidden" name="StatusSend" value="Отправлено" />
+        <input type="submit" value="Создать" />
+    
+}
