@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Lift_application.Models.SenderEmailModel>
+<style>
+    .sendsList
+    {
+        background-color:gray;
+    }
+
+    #space {
+        margin-right: 20px;
+        color: white;
+    }
+
+    .menu_send {
+        background-color: blue;
+        width: 100%;
+        padding: 20px;
+    }
+</style>
+<nav class="menu_send">
+    <table>
+
+        <tr><a asp-controller="UserPanel" asp-action="CreateSender" id="space">Создание рассылок </a></tr>
+
+
+        <tr><a asp-controller="UserPanel" asp-action="SubscribeList" id="space"> Список пользователей в подписке</a></tr>
+        <tr><a asp-controller="UserPanel" asp-action="ArchiveSendsList" id="space">Архив рассылок</a></tr>
+    </table>
+</nav>
+<h1>Архив рассылок</h1>
+
+@foreach(var sends in Model)
+{
+    <div class="sendsList">
+        <h2><a href="~/UserPanel/ArchiveSends/@sends.Id">@sends.Title</a></h2>
+    <p>Тема письма:@sends.Subject</p>
+        <br/>
+    <p>@sends.TextMessage</p>
+    </div>
+    <br /> <br />
+}

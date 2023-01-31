@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Lift_application.Models.SenderEmailModel
+
+
+
+
+    <h1>@Html.Raw(Model.Title)</h1>
+    <p>Тема письма:@Html.Raw(Model.Subject)</p>
+    <br />
+    <p>@Html.Raw(Model.TextMessage)</p>
+    <br />
+    <a href="~/UserPanel/ArchiveSendsPost/@Model.Id">Отправить рассылку</a>
+<a href="~/UserPanel/ArchiveDelete/@Model.Id">Удалить запись из архива</a>
+

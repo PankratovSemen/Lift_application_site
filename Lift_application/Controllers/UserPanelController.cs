@@ -1,9 +1,11 @@
 ﻿ using Lift_application.Areas.Identity.Data;
+
 using Lift_application.Data;
 using Lift_application.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Lift_application.Services;
+using NuGet.Protocol.Plugins;
 
 namespace Lift_application.Controllers
 {
@@ -14,14 +16,15 @@ namespace Lift_application.Controllers
         EmailForSendContext emsend;
         string Emails;
         SenderEmailContext SenderEmailContext;
-      
+        private readonly ILogger<AuthContext> _logger;
 
-        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail) 
+        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail, ILogger<AuthContext> logger) 
         { 
             SignInManager = signInManager;
             db = context;
             emsend = context1;
             SenderEmailContext = senderEmail;
+            _logger = logger;
            
         }
 
@@ -124,33 +127,105 @@ namespace Lift_application.Controllers
         [HttpGet]
         public ActionResult CreateSender()
         {
-            return View();
+            if (User.IsInRole("admin"))
+            {
+                return View();
+            }
+            else
+            {
+                return StatusCode(403);
+            }
         }
         [HttpPost]
         public async Task <ActionResult> CreateSender(SenderEmailModel senderEmailModel)
         {
-            MailSenderService mailSender = new MailSenderService();
+            
+            
+                MailSenderService mailSender = new MailSenderService();
 
 
                 var sends = new SenderEmailModel
                 {
-                    
-                Title = senderEmailModel.Title,
+
+                    Title = senderEmailModel.Title,
                     Subject = senderEmailModel.Subject,
                     TextMessage = senderEmailModel.TextMessage,
                     StatusSend = senderEmailModel.StatusSend
                 };
                 SenderEmailContext.ArticlesSender.Add(sends);
                 SenderEmailContext.SaveChanges();
-            foreach(var emailspost in emsend.EmailForSend)
+                foreach (var emailspost in emsend.EmailForSend)
+                {
+                    await mailSender.SendEmailAsync(emailspost.Email, senderEmailModel.Subject, senderEmailModel.TextMessage);
+                }
+
+                return Redirect("CreateSender");
+            
+            
+            
+            
+            
+        }
+        public ActionResult SubscribeList()
+        {
+            return View(emsend.EmailForSend.ToList());
+        }
+
+        public async Task<ActionResult> DeleteSub(int id)
+        {
+            if (User.IsInRole("admin"))
             {
-                await mailSender.SendEmailAsync(emailspost.Email, senderEmailModel.Subject, senderEmailModel.TextMessage);
+                MailSenderService mailSender = new MailSenderService();
+                if (id == null) return Redirect("~/Home/Block");
+                var subscribe = emsend.EmailForSend.Find(id);
+                
+                
+                    await mailSender.SendEmailAsync(subscribe.Email, "Удаление из рассылки", $"Здравствуйте для вашей электронной почты:{subscribe.Email.ToString()}, рассылка на наши новости приостоновлена.</br> Чтобы снова активировать рассылку перейдите в личный кабинет.");
+                _logger.LogWarning("Отправлено на " + subscribe.Email);
+                _logger.LogWarning("Удаление из рассылки пользователя " + subscribe.Email);
+                emsend.EmailForSend.Remove(subscribe);
+                emsend.SaveChanges();
+
+
+                return Redirect("~/UserPanel");
             }
-            
-            return Redirect("CreateSender");
-            
-            
-            
+            else
+            {
+                return StatusCode(404);
+            }
+        }
+
+        public ActionResult ArchiveSendsList()
+        {
+            return View(SenderEmailContext.ArticlesSender.ToList());
+        }
+
+        public ActionResult ArchiveSends(int id)
+        {
+            var sends = SenderEmailContext.ArticlesSender.Find(id);
+            return View(sends);
+        }
+
+        public async Task<ActionResult> ArchiveSendsPost(int id)
+        {
+            if (id == null) return Redirect("~/Home/Block");
+            MailSenderService mailSender = new MailSenderService();
+            var archive = SenderEmailContext.ArticlesSender.Find(id);
+            foreach (var emailspost in emsend.EmailForSend)
+            {
+                await mailSender.SendEmailAsync(emailspost.Email, archive.Subject, archive.TextMessage);
+            }
+
+            return Redirect("~/UserPanel/ArchiveSendsList");
+        }
+
+        public ActionResult ArchiveDelete(int id)
+        {
+            if (id == null) return StatusCode(404);
+            var archive = SenderEmailContext.ArticlesSender.Find(id);
+            SenderEmailContext.ArticlesSender.Remove(archive);
+            SenderEmailContext.SaveChanges();
+            return Redirect("~/UserPanel/ArchiveSendsList");
         }
     }
 }

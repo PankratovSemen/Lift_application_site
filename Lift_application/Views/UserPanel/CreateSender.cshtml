@@ -2,15 +2,53 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Рассылки";
 }
 @using Lift_application.Models
 
 @model Lift_application.Models.SenderEmailModel
+<nav class="menu_send"> 
+    <table>
+
+        <tr><a asp-controller="UserPanel" asp-action="CreateSender" id="space">Создание рассылок </a></tr>
 
 
+        <tr><a asp-controller="UserPanel" asp-action="SubscribeList" id="space"> Список пользователей в подписке</a></tr>
+        <tr><a asp-controller="UserPanel" asp-action="ArchiveSendsList" id="space">Архив рассылок</a></tr>
+    </table>
+</nav>
+
+<br /><br />
+<h1>Создание рассылок</h1>
 @using (Html.BeginForm())
 {
-    
+    <style>
+        textarea
+        {
+            width:800px;
+            height:300px;
+            font-size: 16px;
+        }
+        input
+        {
+            font-size:16px;
+            height:25px;
+            width: 800px;
+        }
+        #space
+        {
+            margin-right:20px;
+            color:white;
+        }
+
+        .menu_send
+        {
+            background-color:blue;
+            width:100%;
+            padding:20px;
+        }
+    </style>
+    <br />
        @Html.LabelFor(model=>model.Title,"Название письма")
        <br />
         @Html.EditorFor(model => model.Title)

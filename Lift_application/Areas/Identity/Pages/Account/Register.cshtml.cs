@@ -155,7 +155,7 @@ namespace Lift_application.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return Redirect("~/UserPanel/Sender?Email="+Input.Email);
                     }
                 }
                 foreach (var error in result.Errors)
