@@ -231,19 +231,25 @@ namespace Lift_application.Controllers
         }
 
 
-        public async Task<ActionResult> Parser(string url)
+        public async Task<ActionResult> Parser(string urls)
         {
-            if (url == null)
+            if (urls == null)
             {
                 return StatusCode(404);
             }
             AngleParse parse = new AngleParse();
-            var parseresult = new ParseModel
+            foreach (string str in await parse.ParseLink(urls))
             {
-                ParseResult = await parse.Parse(url)
-            };
-            await parseContext.parses.AddAsync(parseresult);
-            parseContext.SaveChanges();
+                var parseresult = new ParseModel
+                {
+                    ParseResult = str
+                };
+                await parseContext.parses.AddAsync(parseresult);
+                parseContext.SaveChanges();
+            }
+
+            
+            
 
             return Redirect("~/UserPanel/ParserResult");
         }
@@ -252,6 +258,16 @@ namespace Lift_application.Controllers
         public ActionResult ParserResult()
         {
             return View(parseContext.parses.ToList());
+        }
+
+        public ActionResult CreateParseLink()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateParseLink(string url)
+        {
+            return Redirect($"~/UserPanel/Parser?url={url}");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Lift_application.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Lift_application.Services;
 
 namespace Lift_application.Controllers
 {
@@ -14,16 +15,16 @@ namespace Lift_application.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
-            
+
             return View();
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Logout_()
         {
-            
 
-            
+
+
             await _signManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
@@ -32,5 +33,8 @@ namespace Lift_application.Controllers
         {
             _signManager = signManager;
         }
+
+        
     }
 }
+

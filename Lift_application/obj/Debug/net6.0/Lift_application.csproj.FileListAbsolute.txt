@@ -1477,3 +1477,4 @@ C:\Users\панкратов_сн\Source\Repos\PankratovSemen\Lift_application_si
 C:\Users\панкратов_сн\Source\Repos\PankratovSemen\Lift_application_site\Lift_application\obj\Debug\net6.0\Lift_application.csproj.CopyComplete
 C:\Users\панкратов_сн\Source\Repos\PankratovSemen\Lift_application_site\Lift_application\obj\Debug\net6.0\Lift_application.genruntimeconfig.cache
 C:\Users\панкратов_сн\Source\Repos\PankratovSemen\Lift_application_site\Lift_application\bin\Debug\net6.0\AngleSharp.dll
+C:\Users\Семён\source\repos\PankratovSemen\Lift_application_site\Lift_application\bin\Debug\net6.0\AngleSharp.dll

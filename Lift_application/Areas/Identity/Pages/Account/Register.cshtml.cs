@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Lift_application.Services;
 
 namespace Lift_application.Areas.Identity.Pages.Account
 {
@@ -145,7 +146,8 @@ namespace Lift_application.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    MailSenderService mail = new MailSenderService();
+                    await mail.SendEmailAsync(Input.Email, "Подтверждение eamil",
                         $"Пожалуйста, подтвердите свою учетную запись  <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>кликните здесь</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)

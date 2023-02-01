@@ -5,8 +5,14 @@
 }
 @model IEnumerable<Lift_application.Models.ParseModel>
 
-
+<style>
+    .result
+    {
+        background-color:gray;
+    }
+</style>
 @foreach(var parsers in Model)
 {
-    <p>@parsers.ParseResult</p>
+    <a class="result" href="@parsers.ParseResult">@parsers.ParseResult</a>
+    <br />
 }
