@@ -17,14 +17,16 @@ namespace Lift_application.Controllers
         string Emails;
         SenderEmailContext SenderEmailContext;
         private readonly ILogger<AuthContext> _logger;
+        ParseContext parseContext;
 
-        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail, ILogger<AuthContext> logger) 
+        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail, ILogger<AuthContext> logger, ParseContext context2) 
         { 
             SignInManager = signInManager;
             db = context;
             emsend = context1;
             SenderEmailContext = senderEmail;
             _logger = logger;
+            parseContext = context2;
            
         }
 
@@ -226,6 +228,30 @@ namespace Lift_application.Controllers
             SenderEmailContext.ArticlesSender.Remove(archive);
             SenderEmailContext.SaveChanges();
             return Redirect("~/UserPanel/ArchiveSendsList");
+        }
+
+
+        public async Task<ActionResult> Parser(string url)
+        {
+            if (url == null)
+            {
+                return StatusCode(404);
+            }
+            AngleParse parse = new AngleParse();
+            var parseresult = new ParseModel
+            {
+                ParseResult = await parse.Parse(url)
+            };
+            await parseContext.parses.AddAsync(parseresult);
+            parseContext.SaveChanges();
+
+            return Redirect("~/UserPanel/ParserResult");
+        }
+
+
+        public ActionResult ParserResult()
+        {
+            return View(parseContext.parses.ToList());
         }
     }
 }

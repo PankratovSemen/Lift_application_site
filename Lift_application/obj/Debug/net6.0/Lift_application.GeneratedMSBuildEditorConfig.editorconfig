@@ -5,141 +5,144 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Lift_application
 build_property.RootNamespace = Lift_application
-build_property.ProjectDir = C:\Users\Семён\source\repos\PankratovSemen\Lift_application_site\Lift_application\
+build_property.ProjectDir = C:\Users\панкратов_сн\source\repos\PankratovSemen\Lift_application_site\Lift_application\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Семён\source\repos\PankratovSemen\Lift_application_site\Lift_application
+build_property.MSBuildProjectDirectory = C:\Users\панкратов_сн\source\repos\PankratovSemen\Lift_application_site\Lift_application
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/About.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Articles.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Articles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBcnRpY2xlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Block.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Block.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCbG9jay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Index.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Privacy.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Login/Index.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Login/Logout.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Login/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Roles/Create.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Roles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Roles/Index.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Roles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Roles/Update.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Roles/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/Error.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/ArchiveSends.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/ArchiveSends.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXEFyY2hpdmVTZW5kcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/ArchiveSendsList.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/ArchiveSendsList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXEFyY2hpdmVTZW5kc0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/CreateSender.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/CreateSender.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXENyZWF0ZVNlbmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Delete.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Index.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Publish.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/ParserResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXFBhcnNlclJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Publish.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXFB1Ymxpc2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Sender.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/Sender.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXFNlbmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/SubscribeList.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/UserPanel/SubscribeList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclBhbmVsXFN1YnNjcmliZUxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/_ViewImports.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/_ViewStart.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Семён/source/repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/_Layout.cshtml]
+[C:/Users/панкратов_сн/Source/Repos/PankratovSemen/Lift_application_site/Lift_application/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-0w40slzq3e
