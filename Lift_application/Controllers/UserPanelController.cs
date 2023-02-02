@@ -18,8 +18,9 @@ namespace Lift_application.Controllers
         SenderEmailContext SenderEmailContext;
         private readonly ILogger<AuthContext> _logger;
         ParseContext parseContext;
+        ParseArticlesContext parseArticles;
 
-        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail, ILogger<AuthContext> logger, ParseContext context2) 
+        public UserPanelController(SignInManager<Lift_applicationUser> signInManager,ArticlesContext context, EmailForSendContext context1, SenderEmailContext senderEmail, ILogger<AuthContext> logger, ParseContext context2,ParseArticlesContext context3) 
         { 
             SignInManager = signInManager;
             db = context;
@@ -27,7 +28,7 @@ namespace Lift_application.Controllers
             SenderEmailContext = senderEmail;
             _logger = logger;
             parseContext = context2;
-           
+            parseArticles = context3;
         }
 
         public IActionResult Index()
@@ -240,12 +241,43 @@ namespace Lift_application.Controllers
             AngleParse parse = new AngleParse();
             foreach (string str in await parse.ParseLink(urls))
             {
-                var parseresult = new ParseModel
+                if(parseContext.parses.FirstOrDefault(link => link.ParseResult ==str) ==null)
                 {
-                    ParseResult = str
-                };
-                await parseContext.parses.AddAsync(parseresult);
-                parseContext.SaveChanges();
+                    var parseresult = new ParseModel
+                    {
+                        ParseResult = str
+                    };
+                    await parseContext.parses.AddAsync(parseresult);
+                    parseContext.SaveChanges();
+                    var title = "";
+                    if(urls== "https://myrosmol.ru/measures")
+                    {
+                        title = await parse.ParseTitleH2(str);
+                    }
+                    else
+                    {
+                        title = await parse.ParseTitle(str);
+                    }
+                    var text = await parse.ParseText(str);
+
+                    var parsePublish = new ParseArticlesModel
+                    {
+                        Title = title,
+                        Description = text,
+                        Text= text,
+                        Date = DateTime.UtcNow.ToString(),
+                        SourceInfo = str
+                    };
+
+                    await parseArticles.AddAsync(parsePublish);
+                    parseArticles.SaveChanges();
+
+                }
+                else
+                {
+                    _logger.LogWarning("Такой сайт уже существует");
+                }
+                
             }
 
             
@@ -268,6 +300,40 @@ namespace Lift_application.Controllers
         public async Task<ActionResult> CreateParseLink(string url)
         {
             return Redirect($"~/UserPanel/Parser?url={url}");
+        }
+
+
+
+        public ActionResult ParserPublish()
+        {
+            return View(parseArticles.ParseArticles.ToList());
+        }
+
+
+        public ActionResult ParserPublishSend(int id)
+        {
+            try
+            {
+                if (id == null) return StatusCode(404);
+                var parseArt = parseArticles.ParseArticles.Find(id);
+                var article = new Articles
+                {
+                    Title = parseArt.Title,
+                    Description = parseArt.Description,
+                    Text = parseArt.Text,
+                    date = DateTime.UtcNow.ToString(),
+                    Author = "Администратор",
+                    SourceInfo = parseArt.SourceInfo
+                };
+
+                db.Articles.Add(article);
+                db.SaveChanges();
+                return Redirect("~/UserPanel/ParserPublish");
+            }
+            catch
+            {
+                return Redirect("~/UserPanel/ParserPublish");
+            }
         }
     }
 }
