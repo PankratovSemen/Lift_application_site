@@ -26,33 +26,37 @@ namespace Lift_application.Services
             {
                 pars = doc.QuerySelectorAll("a.event").Select(el => el.GetAttribute("href")).ToArray();
             }
-            if (url == "https://роскультцентр.рф")
+            else if (url == "https://роскультцентр.рф")
             {
                 pars = doc.QuerySelectorAll("a.js-product-link").Select(el => el.GetAttribute("href")).ToArray();
             }
             
-            if (url == "https://vsekonkursy.ru")
+            else if (url == "https://vsekonkursy.ru")
             {
                 pars = doc.QuerySelectorAll("a[rel~='bookmark']").Select(el => el.GetAttribute("href")).ToArray();
             }
 
-            if(url == "https://bvbinfo.ru/catalog-news")
+            else if(url == "https://bvbinfo.ru/catalog-news")
             {
                 pars = doc.QuerySelectorAll("a.news-card").Select(el => el.GetAttribute("href")).ToArray();
             }
-            if(url== "https://artmasters.ru/press#!/tab/298447445-1")
-            {
-                pars = doc.QuerySelectorAll("a.js-feed-post-link").Select(el => el.GetAttribute("href")).ToArray();
-            }
-
-            if (url == "https://morethantrip.ru/main#news" | url == "https://drugoedelo.ru/news")
-            {
-                pars = doc.QuerySelectorAll("a.js-feed-post-link").Select(el => el.GetAttribute("href")).ToArray();
-            }
-
-            if (url == "https://new.tavrida.art/news")
+            else if(url== "https://artmasters.ru/press")
             {
                 pars = doc.QuerySelectorAll("a").Select(el => el.GetAttribute("href")).ToArray();
+            }
+
+            else if (url == "https://morethantrip.ru/main#news" | url == "https://drugoedelo.ru/news")
+            {
+                pars = doc.QuerySelectorAll("a.js-feed-post-link").Select(el => el.GetAttribute("href")).ToArray();
+            }
+
+            else if (url == "https://new.tavrida.art/news")
+            {
+                pars = doc.QuerySelectorAll("a.svelte-9ec5o5").Select(el => el.GetAttribute("href")).ToArray();
+            }
+            else if(url== "https://mmp38.ru")
+            {
+                pars = doc.QuerySelectorAll("h3 a").Select(el => el.GetAttribute("href")).ToArray();
             }
 
 
@@ -109,7 +113,7 @@ namespace Lift_application.Services
 
             if (url != null)
             {
-                if(url== "https://artmasters.ru/press#!/tab/298447445-1")
+                if(url== "https://artmasters.ru/press")
                 {
                     var pars = doc.QuerySelectorAll("div.js-feed-post-title");
                     foreach (var par in pars)
@@ -333,6 +337,60 @@ namespace Lift_application.Services
             foreach (var par in pars)
             {
                 result += par.Text().Trim();
+            }
+            return result;
+        }
+
+
+        public async Task<string> ParseTitleH2MM(string url)
+        {
+            var config = Configuration.Default.WithDefaultLoader();
+            using var context = BrowsingContext.New(config);
+
+            string result = "";
+
+            using var doc = await context.OpenAsync(url);
+
+
+
+
+            var pars = doc.QuerySelectorAll("div.title h2");
+
+
+
+
+            foreach (var par in pars)
+            {
+
+                result += par.Text().Trim();
+
+            }
+            return result;
+        }
+
+
+        public async Task<string> ParseTextMM(string url)
+        {
+            var config = Configuration.Default.WithDefaultLoader();
+            using var context = BrowsingContext.New(config);
+
+            string result = "";
+
+            using var doc = await context.OpenAsync(url);
+
+
+
+
+            var pars = doc.QuerySelectorAll("div.news-detail p");
+
+
+
+
+            foreach (var par in pars)
+            {
+
+                result += par.Text().Trim();
+
             }
             return result;
         }

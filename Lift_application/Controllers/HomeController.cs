@@ -29,6 +29,7 @@ namespace Lift_application.Controllers
         }
         public IActionResult Index()
         {
+            
             return View(db.Articles.ToList());
 
         }

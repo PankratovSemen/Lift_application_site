@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lift_application.Models.Articles>
+﻿@model List<Lift_application.Models.Articles>
 @using Lift_application.Areas.Identity.Data
 @using Lift_application.Models;
 
@@ -25,10 +25,10 @@
 @inject UserManager<Lift_applicationUser> UserManager
 <body>
     <h3>Материалы</h3>
-    
-        
-        @foreach (var phone in Model)
-        {
+
+
+    @foreach (var phone in Model.OrderByDescending(p => p.Id).ThenBy(p => p.Id).ToList())
+    {
             
 
         @if(phone.SourceInfo == "" || phone.SourceInfo == "My" || phone.SourceInfo =="-")

@@ -552,19 +552,27 @@ namespace Lift_application.Controllers
                         {
                             title = await parse.ParseTitleH2(str);
                         }
-                        if (urls == "https://morethantrip.ru/main#news")
+                        else if (urls == "https://morethantrip.ru/main#news")
                         {
                             title = await parse.ParseMoreThenTripTitle(str);
                         }
-                        if (urls == "https://drugoedelo.ru/news")
+                        else if (urls == "https://drugoedelo.ru/news")
                         {
                             title = await parse.ParseMoreThenTripTitle(str);
                         }
-                        if (urls == "https://artmasters.ru/press#!/tab/298447445-1")
+                        else if (urls == "https://artmasters.ru/press")
                         {
                             title = await parse.ParseMoreThenTripTitle(str);
                         }
-                        else if (urls != null)
+                        else if(urls== "https://роскультцентр.рф")
+                        {
+                            title = await parse.ParseTitleRosCult(str);
+                        }
+                        else if(urls== "https://mmp38.ru")
+                        {
+                            title = await parse.ParseTitleH2MM(str);
+                        }
+                        else 
                         {
                             title = await parse.ParseTitle(str);
 
@@ -574,15 +582,26 @@ namespace Lift_application.Controllers
                         {
                             text = await parse.ParseMoreThenTripText(str);
                         }
-                        if (urls == "https://artmasters.ru/press#!/tab/298447445-1")
+                        else if (urls == "https://artmasters.ru/press")
                         {
                             text = await parse.ParseArtMasterText(str);
                         }
-                        if (urls == "https://drugoedelo.ru/news")
+                        else if (urls == "https://drugoedelo.ru/news")
                         {
                             text = await parse.ParseOtherCase(str);
                         }
-
+                        else if(urls== "https://роскультцентр.рф")
+                        {
+                            text = await parse.ParseTextRosCult(str);
+                        }
+                        else if (urls == "https://mmp38.ru")
+                        {
+                            text = await parse.ParseTextMM(str);
+                        }
+                        else
+                        {
+                            text = await parse.ParseText(str);
+                        }
 
 
                         var parsePublish = new ParseArticlesModel
