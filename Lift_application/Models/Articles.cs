@@ -10,6 +10,7 @@ namespace Lift_application.Models
         public string Title { get; set; }
         
         [DataType(DataType.MultilineText)]
+        [StringLength(400, MinimumLength = 20, ErrorMessage = "Длина строки должна быть от 3 до 100 символов")]
         public string Description { get; set; }
         [DataType(DataType.MultilineText)]
         

@@ -17,12 +17,22 @@
 </style>
 @foreach(var ParseArticle in Model)
 {
-   <div class="Parse">
-       <h1 class="col">@ParseArticle.Title</h1>
-    <p>@ParseArticle.Text</p>
-    <a href="@ParseArticle.SourceInfo">Источник</a>
-    <br/>
-    <a href="~/UserPanel/ParserPublishSend/@ParseArticle.Id">Опубликовать</a>
-   </div>
-   <br />
+    if (ParseArticle.Title != "" || ParseArticle.Text != "")
+    {
+        <div class="Parse">
+            <h1 class="col">@ParseArticle.Title</h1>
+            <p>@ParseArticle.Text</p>
+            <a href="@ParseArticle.SourceInfo">Источник</a>
+            
+
+
+
+            <br />
+            <a href="~/UserPanel/ParserPublishSend/@ParseArticle.Id">Опубликовать</a>
+            <a href="~/UserPanel/ParserPublishDelete/@ParseArticle.Id">Удалить</a>
+        </div>
+        <br />
+    }
 }
+
+    

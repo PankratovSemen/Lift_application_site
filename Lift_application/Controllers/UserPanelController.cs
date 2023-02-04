@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Lift_application.Services;
 using NuGet.Protocol.Plugins;
+using Microsoft.Data.SqlClient;
 
 namespace Lift_application.Controllers
 {
@@ -58,8 +59,17 @@ namespace Lift_application.Controllers
 
         public IActionResult Publish(Articles articles)
         {
-            
-            db.Articles.Add(articles);
+            var deskr = articles.Description.Remove(400, articles.Description.Length - 400);
+            var article = new Articles
+            {
+                Title = articles.Title,
+                Description = deskr,
+                Text = articles.Text,
+                Author = articles.Author,
+                date = articles.date,
+                SourceInfo = articles.SourceInfo
+            };
+            db.Articles.Add(article);
             db.SaveChanges();
             return Redirect("~/UserPanel/Publish");
         }
@@ -174,23 +184,33 @@ namespace Lift_application.Controllers
             return View(emsend.EmailForSend.ToList());
         }
 
-        public async Task<ActionResult> DeleteSub(int id)
+        public async Task<ActionResult> DeleteSub(string username)
         {
             if (User.IsInRole("admin"))
             {
-                MailSenderService mailSender = new MailSenderService();
-                if (id == null) return Redirect("~/Home/Block");
-                var subscribe = emsend.EmailForSend.Find(id);
-                
-                
-                    await mailSender.SendEmailAsync(subscribe.Email, "Удаление из рассылки", $"Здравствуйте для вашей электронной почты:{subscribe.Email.ToString()}, рассылка на наши новости приостоновлена.</br> Чтобы снова активировать рассылку перейдите в личный кабинет.");
-                _logger.LogWarning("Отправлено на " + subscribe.Email);
-                _logger.LogWarning("Удаление из рассылки пользователя " + subscribe.Email);
-                emsend.EmailForSend.Remove(subscribe);
-                emsend.SaveChanges();
+                if(emsend.EmailForSend.FirstOrDefault(l => l.Email==username) != null)
+                {
+                    MailSenderService mailSender = new MailSenderService();
+                    if (username == null) return Redirect("~/Home/Block");
+                    var subscribe = emsend.EmailForSend.Where(m => m.Email == username).Select(m => m.Id).SingleOrDefault();
+                    var delete = emsend.EmailForSend.Find(subscribe);
 
 
-                return Redirect("~/UserPanel");
+
+                    await mailSender.SendEmailAsync(username, "Удаление из рассылки", $"Здравствуйте для вашей электронной почты:{username.ToString()}, рассылка на наши новости приостоновлена.</br> Чтобы снова активировать рассылку перейдите в личный кабинет.");
+                    _logger.LogWarning("Отправлено на " + username);
+                    _logger.LogWarning("Удаление из рассылки пользователя " + username);
+                    emsend.EmailForSend.Remove(delete);
+                    emsend.SaveChanges();
+
+
+                    return Redirect("~/UserPanel");
+                }
+                else
+                {
+                    return Redirect("~/Home/Block");
+                }
+                
             }
             else
             {
@@ -241,300 +261,194 @@ namespace Lift_application.Controllers
                     return StatusCode(404);
                 }
                 AngleParse parse = new AngleParse();
-                //if (urls == "all")
-                //{
-                //    foreach (string str in await parse.ParseLink("https://myrosmol.ru/measures"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
-                //            var title = "";
-                //            if (urls == "https://myrosmol.ru/measures")
-                //            {
-                //                title = await parse.ParseTitleH2(str);
-                //            }
-                //            else
-                //            {
-                //                title = await parse.ParseTitle(str);
-                //            }
-                //            var text = await parse.ParseText(str);
-
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
-
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
-
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
-
-                //    }
-                //    foreach (string str in await parse.ParseLink("https://роскультцентр.рф"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
-                //            var title = "";
-                //            title = await parse.ParseTitleRosCult(str);
-                //            var text = await parse.ParseTextRosCult(str);
-
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
-
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
-
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
-
-                //    }
-                //    foreach (string str in await parse.ParseLink("https://vsekonkursy.ru"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
-                //            var title = "";
-                //            if (urls == "https://myrosmol.ru/measures")
-                //            {
-                //                title = await parse.ParseTitleH2(str);
-                //            }
-                //            else
-                //            {
-                //                title = await parse.ParseTitle(str);
-                //            }
-                //            var text = await parse.ParseText(str);
-
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
-
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
-
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
-
-                //    }
-
-                //    foreach (string str in await parse.ParseLink("https://bvbinfo.ru/catalog-news"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
-                //            var title = "";
-                //            if (urls == "https://myrosmol.ru/measures")
-                //            {
-                //                title = await parse.ParseTitleH2(str);
-                //            }
-                //            else
-                //            {
-                //                title = await parse.ParseTitle(str);
-                //            }
-                //            var text = await parse.ParseText(str);
-
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
-
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
-
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
-
-                //    }
-                //    foreach (string str in await parse.ParseLink("https://artmasters.ru/press#!/tab/298447445-1"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
-                //            var title = "";
-                //            if (urls == "https://myrosmol.ru/measures")
-                //            {
-                //                title = await parse.ParseTitleH2(str);
-                //            }
-                //            else
-                //            {
-                //                title = await parse.ParseTitle(str);
-                //            }
-                //            var text = await parse.ParseText(str);
-
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
-
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
-
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
-
-                //    }
-
-                //    foreach (string str in await parse.ParseLink("https://morethantrip.ru/main#news"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
+                if (urls == "all")
+                {
+                    foreach (string str in await parse.ParseLink("https://myrosmol.ru/measures"))
+                    {
+                        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
+                        {
+                            var parseresult = new ParseModel
+                            {
+                                ParseResult = str
+                            };
 
 
+                            await parseContext.parses.AddAsync(parseresult);
+                            parseContext.SaveChanges();
+                         
+                               var title = await parse.ParseTitleH2(str);
+                               var  text = await parse.ParseTextAisYoung(str);
 
 
-                //            var title = await parse.ParseMoreThenTripTitle(str);
+                            var parsePublish = new ParseArticlesModel
+                            {
+                                Title = title,
+                                Description = text,
+                                Text = text + $"<a href='{str}'>Источник </a>",
+                                Date = DateTime.UtcNow.ToString(),
+                                SourceInfo = str
+                            };
 
-                //            var text = await parse.ParseMoreThenTripText(str);
-
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
-
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
-
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
-
-                //    }
-
-                //    foreach (string str in await parse.ParseLink("https://drugoedelo.ru/news"))
-                //    {
-                //        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
-                //        {
-                //            var parseresult = new ParseModel
-                //            {
-                //                ParseResult = str
-                //            };
-                //            await parseContext.parses.AddAsync(parseresult);
-                //            parseContext.SaveChanges();
-                //            var title = "";
-                //            if (urls == "https://myrosmol.ru/measures")
-                //            {
-                //                title = await parse.ParseTitleH2(str);
-                //            }
-                //            else if (urls == "https://morethantrip.ru/main#news" | urls == "https://drugoedelo.ru/news")
-                //            {
-                //                title = await parse.ParseMoreThenTripTitle(str);
-                //            }
-                //            else
-                //            {
-                //                title = await parse.ParseTitle(str);
-                //            }
-                //            var text = await parse.ParseText(str);
-                //            if (urls == "https://morethantrip.ru/main#news")
-                //            {
-                //                text = await parse.ParseMoreThenTripText(str);
-                //            }
-                //            else if (urls == "https://drugoedelo.ru/news")
-                //            {
-                //                text = await parse.ParseOtherCase(str);
-                //            }
+                            await parseArticles.AddAsync(parsePublish);
+                            parseArticles.SaveChanges();
+                        }
+                        else
+                        {
+                            _logger.LogWarning("Такой сайт уже существует");
+                        }
 
 
+                    }
+
+                }
+                foreach (string str in await parse.ParseLink("https://роскультцентр.рф"))
+                {
+                    if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
+                    {
+                        var parseresult = new ParseModel
+                        {
+                            ParseResult = str
+                        };
 
 
+                        await parseContext.parses.AddAsync(parseresult);
+                        parseContext.SaveChanges();
+                        
+                           var  title = await parse.ParseTitleRosCult(str);
+                                              
+                            var text = await parse.ParseTextRosCult(str);
+                        
+                        
 
-                //            var parsePublish = new ParseArticlesModel
-                //            {
-                //                Title = title,
-                //                Description = text,
-                //                Text = text,
-                //                Date = DateTime.UtcNow.ToString(),
-                //                SourceInfo = str
-                //            };
+                        var parsePublish = new ParseArticlesModel
+                        {
+                            Title = title,
+                            Description = text,
+                            Text = text + $"<a href='{str}'>Источник </a>",
+                            Date = DateTime.UtcNow.ToString(),
+                            SourceInfo = str
+                        };
 
-                //            await parseArticles.AddAsync(parsePublish);
-                //            parseArticles.SaveChanges();
+                        await parseArticles.AddAsync(parsePublish);
+                        parseArticles.SaveChanges();
+                    }
+                    else
+                    {
+                        _logger.LogWarning("Такой сайт уже существует");
+                    }
 
-                //        }
-                //        else
-                //        {
-                //            _logger.LogWarning("Такой сайт уже существует");
-                //        }
 
-                //    }
-                //}
-                //else
-                //{
+                }
+
+            
+                    foreach (string str in await parse.ParseLink("https://vsekonkursy.ru"))
+                    {
+                        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
+                        {
+                            var parseresult = new ParseModel
+                            {
+                                ParseResult = str
+                            };
+                            await parseContext.parses.AddAsync(parseresult);
+                            parseContext.SaveChanges();
+                          
+                            var  title = await parse.ParseTitle(str);
+                            var text = await parse.ParseText(str);
+
+                            var parsePublish = new ParseArticlesModel
+                            {
+                                Title = title,
+                                Description = text,
+                                Text = text + $"<a href='{str}'>Источник </a>",
+                                Date = DateTime.UtcNow.ToString(),
+                                SourceInfo = str
+                            };
+
+                            await parseArticles.AddAsync(parsePublish);
+                            parseArticles.SaveChanges();
+
+                        }
+                        else
+                        {
+                            _logger.LogWarning("Такой сайт уже существует");
+                        }
+
+                    }
+
+                    foreach (string str in await parse.ParseLink("https://bvbinfo.ru/catalog-news"))
+                    {
+                        if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
+                        {
+                            var parseresult = new ParseModel
+                            {
+                                ParseResult = str
+                            };
+                            await parseContext.parses.AddAsync(parseresult);
+                            parseContext.SaveChanges();
+                            var title = await parse.ParseTitle(str);
+                            var text = await parse.ParseText(str);
+
+                            var parsePublish = new ParseArticlesModel
+                            {
+                                Title = title,
+                                Description = text,
+                                Text = text + $"<a href='{str}'>Источник </a>",
+                                Date = DateTime.UtcNow.ToString(),
+                                SourceInfo = str
+                            };
+
+                            await parseArticles.AddAsync(parsePublish);
+                            parseArticles.SaveChanges();
+
+                        }
+                        else
+                        {
+                            _logger.LogWarning("Такой сайт уже существует");
+                        }
+
+                    }
+                foreach (string str in await parse.ParseLink("https://mmp38.ru"))
+                {
+                    if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
+                    {
+                        var parseresult = new ParseModel
+                        {
+                            ParseResult = str
+                        };
+
+
+                        await parseContext.parses.AddAsync(parseresult);
+                        parseContext.SaveChanges();
+                       
+                           var title = await parse.ParseTitleH2MM(str);
+                                            
+                                              
+                        
+                        
+                           var text = await parse.ParseTextMM(str);
+                        
+                       
+
+                        var parsePublish = new ParseArticlesModel
+                        {
+                            Title = title,
+                            Description = text,
+                            Text = text + $"<a href='{str}'>Источник </a>",
+                            Date = DateTime.UtcNow.ToString(),
+                            SourceInfo = str
+                        };
+
+                        await parseArticles.AddAsync(parsePublish);
+                        parseArticles.SaveChanges();
+                    }
+                    else
+                    {
+                        _logger.LogWarning("Такой сайт уже существует");
+                    }
+
+
+                }
+                               
                 foreach (string str in await parse.ParseLink(urls))
                 {
                     if (parseContext.parses.FirstOrDefault(link => link.ParseResult == str) == null)
@@ -552,18 +466,9 @@ namespace Lift_application.Controllers
                         {
                             title = await parse.ParseTitleH2(str);
                         }
-                        else if (urls == "https://morethantrip.ru/main#news")
-                        {
-                            title = await parse.ParseMoreThenTripTitle(str);
-                        }
-                        else if (urls == "https://drugoedelo.ru/news")
-                        {
-                            title = await parse.ParseMoreThenTripTitle(str);
-                        }
-                        else if (urls == "https://artmasters.ru/press")
-                        {
-                            title = await parse.ParseMoreThenTripTitle(str);
-                        }
+                       
+                        
+                        
                         else if(urls== "https://роскультцентр.рф")
                         {
                             title = await parse.ParseTitleRosCult(str);
@@ -578,19 +483,8 @@ namespace Lift_application.Controllers
 
                         }
                         var text = "";
-                        if (urls == "https://morethantrip.ru/main#news")
-                        {
-                            text = await parse.ParseMoreThenTripText(str);
-                        }
-                        else if (urls == "https://artmasters.ru/press")
-                        {
-                            text = await parse.ParseArtMasterText(str);
-                        }
-                        else if (urls == "https://drugoedelo.ru/news")
-                        {
-                            text = await parse.ParseOtherCase(str);
-                        }
-                        else if(urls== "https://роскультцентр.рф")
+                        
+                        if(urls== "https://роскультцентр.рф")
                         {
                             text = await parse.ParseTextRosCult(str);
                         }
@@ -598,17 +492,20 @@ namespace Lift_application.Controllers
                         {
                             text = await parse.ParseTextMM(str);
                         }
+                        else if(urls== "https://myrosmol.ru/measures")
+                        {
+                            text = await parse.ParseTextAisYoung(str);
+                        }
                         else
                         {
                             text = await parse.ParseText(str);
                         }
 
-
                         var parsePublish = new ParseArticlesModel
                         {
                             Title = title,
                             Description = text,
-                            Text = text,
+                            Text = text + $"<a href='{str}'>Источник </a>",
                             Date = DateTime.UtcNow.ToString(),
                             SourceInfo = str
                         };
@@ -616,16 +513,7 @@ namespace Lift_application.Controllers
                         await parseArticles.AddAsync(parsePublish);
                         parseArticles.SaveChanges();
                     }
-                    
-
-
-
-
-
-
-
-
-                        else
+                    else
                     {
                         _logger.LogWarning("Такой сайт уже существует");
                     }
@@ -633,12 +521,10 @@ namespace Lift_application.Controllers
 
                 }
 
-
-
             }
             catch
             {
-
+                
             }
 
             return Redirect("~/UserPanel/ParserResult");
@@ -662,14 +548,17 @@ namespace Lift_application.Controllers
 
         public ActionResult ParserPublishSend(int id)
         {
-            try
-            {
+            //try
+            //{
                 if (id == null) return StatusCode(404);
                 var parseArt = parseArticles.ParseArticles.Find(id);
+                var deskr = parseArt.Description;
+                 if (parseArt.Description.Length>=400) deskr = parseArt.Description.Remove(400, parseArt.Description.Length - 400);
+            
                 var article = new Articles
                 {
                     Title = parseArt.Title,
-                    Description = parseArt.Description,
+                    Description = deskr,
                     Text = parseArt.Text,
                     date = DateTime.UtcNow.ToString(),
                     Author = "Администратор",
@@ -678,6 +567,24 @@ namespace Lift_application.Controllers
 
                 db.Articles.Add(article);
                 db.SaveChanges();
+                return Redirect("~/UserPanel/ParserPublish");
+            //}
+            //catch
+            //{
+            //    return Redirect("~/UserPanel/ParserPublish");
+            //}
+        }
+
+
+        public ActionResult ParserPublishDelete(int id)
+        {
+            try
+            {
+                if (id == null) return StatusCode(404);
+                var parseArt = parseArticles.ParseArticles.Find(id);
+                
+               parseArticles.ParseArticles.Remove(parseArt);
+                parseArticles.SaveChanges();
                 return Redirect("~/UserPanel/ParserPublish");
             }
             catch

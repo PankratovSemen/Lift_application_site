@@ -35,7 +35,8 @@ namespace Liftapplication.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("SourceInfo")
                         .HasColumnType("nvarchar(max)");

@@ -35,7 +35,7 @@
 @foreach (var emailForSend in Model)
 {
     <div>
-        <p>@emailForSend.Email <a href="~/UserPanel/DeleteSub?id=@emailForSend.Id">Удалить</a></p>
+        <p>@emailForSend.Email <a href="~/UserPanel/DeleteSub?username=@emailForSend.Email">Удалить</a></p>
         
         <br />
     </div>

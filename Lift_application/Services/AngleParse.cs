@@ -40,20 +40,7 @@ namespace Lift_application.Services
             {
                 pars = doc.QuerySelectorAll("a.news-card").Select(el => el.GetAttribute("href")).ToArray();
             }
-            else if(url== "https://artmasters.ru/press")
-            {
-                pars = doc.QuerySelectorAll("a").Select(el => el.GetAttribute("href")).ToArray();
-            }
-
-            else if (url == "https://morethantrip.ru/main#news" | url == "https://drugoedelo.ru/news")
-            {
-                pars = doc.QuerySelectorAll("a.js-feed-post-link").Select(el => el.GetAttribute("href")).ToArray();
-            }
-
-            else if (url == "https://new.tavrida.art/news")
-            {
-                pars = doc.QuerySelectorAll("a.svelte-9ec5o5").Select(el => el.GetAttribute("href")).ToArray();
-            }
+            
             else if(url== "https://mmp38.ru")
             {
                 pars = doc.QuerySelectorAll("h3 a").Select(el => el.GetAttribute("href")).ToArray();
@@ -79,16 +66,7 @@ namespace Lift_application.Services
                     var urls = "https://bvbinfo.ru";
                     result.Add(urls + par);
                 }
-                else if (url== "https://morethantrip.ru/main#news")
-                {
-                    var urls = "https://morethantrip.ru";
-                    result.Add(urls + par);
-                }
-                else if(url == "https://new.tavrida.art/news")
-                {
-                    var urls = "https://new.tavrida.art";
-                    result.Add(urls + par);
-                }
+               
                 else
                 {
                     result.Add(par);
@@ -112,19 +90,7 @@ namespace Lift_application.Services
             
 
             if (url != null)
-            {
-                if(url== "https://artmasters.ru/press")
-                {
-                    var pars = doc.QuerySelectorAll("div.js-feed-post-title");
-                    foreach (var par in pars)
-                    {
-
-                        result += par.Text().Trim();
-
-                    }
-                }
-                else
-                {
+            {                             
                     var pars = doc.QuerySelectorAll("h1");
                     foreach (var par in pars)
                     {
@@ -132,14 +98,10 @@ namespace Lift_application.Services
                         result += par.Text().Trim();
 
                     }
-                }
+                
                 
             }
 
-
-            
-
-            
             return result;
         }
         public async Task<string> ParseTitleH2(string url)
@@ -244,103 +206,7 @@ namespace Lift_application.Services
             return result;
         }
 
-        public async Task<string> ParseMoreThenTripTitle(string url)
-        {
-            var config = Configuration.Default.WithDefaultLoader();
-            using var context = BrowsingContext.New(config);
-
-            string result = "";
-
-            using var doc = await context.OpenAsync(url);
-
-
-
-
-            var pars = doc.QuerySelectorAll("div.js-feed-post-title");
-
-
-
-
-            foreach (var par in pars)
-            {
-                result += par.Text().Trim();
-            }
-            return result;
-        }
-
-        public async Task<string> ParseMoreThenTripText(string url)
-        {
-            var config = Configuration.Default.WithDefaultLoader();
-            using var context = BrowsingContext.New(config);
-
-            string result = "";
-
-            using var doc = await context.OpenAsync(url);
-
-
-
-
-            var pars = doc.QuerySelectorAll("div.t-feed__post-popup__text-wrapper");
-
-
-
-
-            foreach (var par in pars)
-            {
-                result += par.Text().Trim();
-            }
-            return result;
-        }
-
-        public async Task<string> ParseOtherCase(string url)
-        {
-            var config = Configuration.Default.WithDefaultLoader();
-            using var context = BrowsingContext.New(config);
-
-            string result = "";
-
-            using var doc = await context.OpenAsync(url);
-
-
-
-
-            var pars = doc.QuerySelectorAll("div.feed-text");
-
-
-
-
-            foreach (var par in pars)
-            {
-                result += par.Text().Trim();
-            }
-            return result;
-        }
-
-
-        public async Task<string> ParseArtMasterText(string url)
-        {
-            var config = Configuration.Default.WithDefaultLoader();
-            using var context = BrowsingContext.New(config);
-
-            string result = "";
-
-            using var doc = await context.OpenAsync(url);
-
-
-
-
-            var pars = doc.QuerySelectorAll("div.t-redactor__text");
-
-
-
-
-            foreach (var par in pars)
-            {
-                result += par.Text().Trim();
-            }
-            return result;
-        }
-
+                
 
         public async Task<string> ParseTitleH2MM(string url)
         {
@@ -382,6 +248,34 @@ namespace Lift_application.Services
 
 
             var pars = doc.QuerySelectorAll("div.news-detail p");
+
+
+
+
+            foreach (var par in pars)
+            {
+
+                result += par.Text().Trim();
+
+            }
+            return result;
+        }
+
+
+
+        public async Task<string> ParseTextAisYoung(string url)
+        {
+            var config = Configuration.Default.WithDefaultLoader();
+            using var context = BrowsingContext.New(config);
+
+            string result = "";
+
+            using var doc = await context.OpenAsync(url);
+
+
+
+
+            var pars = doc.QuerySelectorAll("div.event__description p");
 
 
 

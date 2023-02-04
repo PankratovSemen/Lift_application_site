@@ -35,7 +35,7 @@
         {
            <div class="brd">
                 <h2><a href="~/Home/Articles/@phone.Id">@phone.Title</a></h2>
-            <p>@phone.Description ...</p>
+            <p>@Html.Raw(phone.Description) ...</p>
 
             @if (SignInManager.IsSignedIn(User))
             {
