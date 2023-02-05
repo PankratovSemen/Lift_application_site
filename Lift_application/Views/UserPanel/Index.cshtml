@@ -18,10 +18,18 @@
         <a asp-controller="UserPanel" asp-action="Publish">Публикация статей</a>
         <br />
                 <a asp-controller="UserPanel" asp-action="CreateSender">Рассылки</a>
+                <br />
+        <a asp-controller="UserPanel" asp-action="OptionsSender">Настройка подписки</a>
+        <br />
+        <a href="~/UserPanel/Parser?urls=all">Другие источники</a>
+        <br />
+        <a href="~/Roles">Роли</a>
     }
     else
     {
         <p>Вы вошли в личный кабинет</p>
+        <br />
+        <a asp-controller="UserPanel" asp-action="OptionsSender">Настройка подписки</a>
     }
 }
 

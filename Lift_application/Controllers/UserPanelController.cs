@@ -125,17 +125,32 @@ namespace Lift_application.Controllers
             };
             if (Emails != null)
             {
-                emsend.EmailForSend.Add(emailm);
-                emsend.SaveChanges();
-                return Redirect("~/UserPanel");
+                if (emsend.EmailForSend.FirstOrDefault(l => l.Email == email) == null)
+                {
+
+
+                    emsend.EmailForSend.Add(emailm);
+                    emsend.SaveChanges();
+                    return Redirect("~/UserPanel");
+                }
+                else
+                {
+                    _logger.LogWarning("Подписка: Пользователь уже состоит в подписке");
+                    return Redirect("~/Home/Block");
+                }
+                
+                
+                
+                
             }
             else
             {
                 return StatusCode(404);
             }
 
-            
-            
+
+
+
         }
         [HttpGet]
         public ActionResult CreateSender()
@@ -527,7 +542,7 @@ namespace Lift_application.Controllers
                 
             }
 
-            return Redirect("~/UserPanel/ParserResult");
+            return Redirect("~/UserPanel/ParserPublish");
         }
 
 
@@ -591,6 +606,13 @@ namespace Lift_application.Controllers
             {
                 return Redirect("~/UserPanel/ParserPublish");
             }
+        }
+
+
+        public ActionResult OptionsSender()
+        {
+            
+            return View();
         }
     }
 }

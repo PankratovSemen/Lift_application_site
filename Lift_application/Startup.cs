@@ -10,8 +10,7 @@ using Lift_application.Areas.Identity.Data;
 using Lift_application.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
-
-
+using Microsoft.AspNetCore.Authentication;
 
 
 namespace Lift_application
@@ -36,6 +35,20 @@ namespace Lift_application
 
 
             services.AddControllersWithViews();
+            services.AddAuthentication()
+                .AddOAuth("VK", "VK",config =>
+                {
+                    config.ClientId = "51544073";
+                    config.ClientSecret = "NhdxCteqtD7oQ21jZpFm";
+                    config.ClaimsIssuer = "Vkontakte";
+                    config.CallbackPath = new PathString("/sigin-vk-token");
+                    config.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+                    config.TokenEndpoint = "https://oauth.vk.com/access_token";
+                    config.Scope.Add("email");
+                    config.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "user_id");
+                    config.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+                    config.SaveTokens  = true;
+                });
             var builder = services.AddIdentityCore<IdentityUser>();
             builder.AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<AuthContext>();
@@ -52,8 +65,14 @@ namespace Lift_application
         public void Configure(IApplicationBuilder app)
         {
             app.UseDeveloperExceptionPage();
-
-            app.UseStaticFiles();
+            app.UseDefaultFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Add("Cache-Control", "public,max-age=600");
+                }
+            });
 
             app.UseRouting();
 

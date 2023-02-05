@@ -27,6 +27,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Owin" Version="4.2.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="Owin.Security.Providers" Version="2.26.0" />
   </ItemGroup>
 
   <ItemGroup>
