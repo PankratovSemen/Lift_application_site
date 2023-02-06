@@ -11,7 +11,8 @@ using Lift_application.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-
+using Microsoft.AspNetCore.Authentication.OAuth;
+using AspNet.Security.OAuth.VK;
 
 namespace Lift_application
 {
@@ -36,18 +37,26 @@ namespace Lift_application
 
             services.AddControllersWithViews();
             services.AddAuthentication()
-                .AddOAuth("VK", "VK",config =>
+                .AddVK(options =>
                 {
-                    config.ClientId = "51544073";
-                    config.ClientSecret = "NhdxCteqtD7oQ21jZpFm";
-                    config.ClaimsIssuer = "Vkontakte";
-                    config.CallbackPath = new PathString("/sigin-vk-token");
-                    config.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
-                    config.TokenEndpoint = "https://oauth.vk.com/access_token";
-                    config.Scope.Add("email");
-                    config.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "user_id");
-                    config.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
-                    config.SaveTokens  = true;
+                    options.ClientId = "51544911";
+                    options.ClientSecret = "AY3dWua7YnvTR3FqkUuG";
+
+                    // Request for permissions https://vk.com/dev/permissions?f=1.%20Access%20Permissions%20for%20User%20Token
+                    options.Scope.Add("email");
+
+                    // Add fields https://vk.com/dev/objects/user
+                    options.Fields.Add("uid");
+                    options.Fields.Add("first_name");
+                    options.Fields.Add("last_name");
+                    options.CallbackPath = new PathString("/sign-in-vk");
+                    // In this case email will return in OAuthTokenResponse, 
+                    // but all scope values will be merged with user response
+                    // so we can claim it as field
+                    options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "uid");
+                    options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+                    options.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "first_name");
+                    options.ClaimActions.MapJsonKey(ClaimTypes.Surname, "last_name");
                 });
             var builder = services.AddIdentityCore<IdentityUser>();
             builder.AddRoles<IdentityRole>()
@@ -60,6 +69,12 @@ namespace Lift_application
             //services.AddRazorPages();
             
 
+        }
+
+        private Task OnFailure(RemoteFailureContext arg)
+        {
+            Console.WriteLine(arg);
+            return Task.CompletedTask;
         }
 
         public void Configure(IApplicationBuilder app)
