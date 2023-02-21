@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
-using AspNet.Security.OAuth.VK;
+
 
 namespace Lift_application
 {
@@ -37,26 +37,26 @@ namespace Lift_application
 
             services.AddControllersWithViews();
             services.AddAuthentication()
-                .AddVK(options =>
+                .AddVkontakte(options =>
                 {
-                    options.ClientId = "51544911";
-                    options.ClientSecret = "AY3dWua7YnvTR3FqkUuG";
-
-                    // Request for permissions https://vk.com/dev/permissions?f=1.%20Access%20Permissions%20for%20User%20Token
+                    options.ApiVersion = "5.8";
+                    options.ClientId = Configuration["VkAuth:AppId"];
+                    options.ClientSecret = Configuration["VkAuth:AppSecret"];
                     options.Scope.Add("email");
+                    options.SaveTokens = true;
+                    options.CallbackPath = new PathString("/auth-vk");
 
-                    // Add fields https://vk.com/dev/objects/user
-                    options.Fields.Add("uid");
-                    options.Fields.Add("first_name");
-                    options.Fields.Add("last_name");
-                    options.CallbackPath = new PathString("/sign-in-vk");
-                    // In this case email will return in OAuthTokenResponse, 
-                    // but all scope values will be merged with user response
-                    // so we can claim it as field
-                    options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "uid");
-                    options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
-                    options.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "first_name");
-                    options.ClaimActions.MapJsonKey(ClaimTypes.Surname, "last_name");
+                    options.Events.OnCreatingTicket = ctx =>
+                    {
+                        var tokens = ctx.Properties.GetTokens() as List<AuthenticationToken>;
+                        tokens.Add(new AuthenticationToken()
+                        {
+                            Name = "TicketCreated",
+                            Value = DateTime.UtcNow.ToString()
+                        });
+                        ctx.Properties.StoreTokens(tokens);
+                        return Task.CompletedTask;
+                    }; ;
                 });
             var builder = services.AddIdentityCore<IdentityUser>();
             builder.AddRoles<IdentityRole>()
