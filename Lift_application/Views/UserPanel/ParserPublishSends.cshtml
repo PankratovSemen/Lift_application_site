@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Lift_application.Models.ParseArticlesModel
+
+@using (Html.BeginForm())
+{
+    <h1> @Html.Raw(Model.Title)</h1>
+    <input type="hidden" name="Title" value="@Model.Title" />
+    <p>@Html.Raw(Model.Description)</p>
+    <input type="hidden" name="Description" value="@Model.Description" />
+        <input type="hidden" name="Text" value="@Model.Text" />
+    <p>Дата: @Html.Raw(Model.Date)</p>
+    <input type="hidden" name="Date" value="@Model.Date" />
+    <input type="hidden" name="SourceInfo" value="@Model.SourceInfo" />
+    <br /> <br />
+    @Html.LabelFor(model => model.Image, "Ссылка на картинку")
+    <br />
+    @Html.EditorFor(model => model.Image)
+    <br />
+    <br />
+
+    foreach (var td in ViewBag.Cats)
+    {
+
+        <ul role="listbox" tabindex="0" aria-label="Category">
+            <li tabindex="-1" role="option" aria-checked="false">
+                <div class="form-check mb-0">
+                    <input tabindex="-1" id="@td.Id" name="@td.Name" class="form-check-input" type="checkbox" value="@td.Id"><label for="@td.Id" class="form-check-label"></label>
+                    @td.Name
+
+                </div>
+            </li>
+
+        </ul>
+
+    }
+
+    <input type="submit" value="Опубликовать" />
+}
+
+

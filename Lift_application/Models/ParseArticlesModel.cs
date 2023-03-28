@@ -9,5 +9,6 @@
         public string? Text { get; set; }
         public string? Date { set; get; }
         public string SourceInfo { get; set; }
+        public string? Image { get; set; }
     }
 }

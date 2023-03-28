@@ -7,6 +7,9 @@
 @using Lift_application.Areas.Identity.Data
 @inject SignInManager<Lift_applicationUser> SignInManager;
 @inject UserManager<Lift_applicationUser> UserManager
+@{
+    Layout = "LA/Admin_La.cshtml";
+}
 
 @if (SignInManager.IsSignedIn(User))
 {

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Lift_application.Services;
 using NuGet.Protocol.Plugins;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography.Xml;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lift_application.Controllers
 {
@@ -46,6 +48,8 @@ namespace Lift_application.Controllers
         [HttpGet]
         public IActionResult Publish()
         {
+            Category category = new();
+            ViewBag.Cat = db.Categories.ToList();
             if (User.IsInRole("admin"))
             {
                 return View();
@@ -59,6 +63,9 @@ namespace Lift_application.Controllers
 
         public IActionResult Publish(Articles articles)
         {
+            
+           
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + selected + "');", true);
             var deskr = articles.Description.Remove(400, articles.Description.Length - 400);
             var article = new Articles
             {
@@ -67,11 +74,39 @@ namespace Lift_application.Controllers
                 Text = articles.Text,
                 Author = articles.Author,
                 date = articles.date,
-                SourceInfo = articles.SourceInfo
+                SourceInfo = articles.SourceInfo,
+                Image = articles.Image,
             };
             db.Articles.Add(article);
             db.SaveChanges();
-            return Redirect("~/UserPanel/Publish");
+            List<string> selected = new List<string>();
+            foreach (var res in db.Categories)
+            {
+                selected.Add(Request.Form[res.Name]);
+
+            }
+            //SELECT Max(Id) FROM Articles
+            var s = db.Database.SqlQuery<int>($"SELECT Max(Id) FROM Articles");
+            int y = 0;
+            foreach (var sq in s)
+            {
+                y = Convert.ToInt32(sq);
+                
+            }
+            foreach (var res in selected.ToList())
+            {
+                if (res != null)
+                {
+                    int resint = Convert.ToInt32(res);
+
+                    var dbs = db.Database.ExecuteSqlRaw($"INSERT INTO ArticlesCategory VALUES({y},{resint})");
+                    db.SaveChanges();
+                }
+                
+                
+            }
+            return Redirect("~/UserPanel/Publish" );
+
         }
 
         [HttpGet]
@@ -577,7 +612,8 @@ namespace Lift_application.Controllers
                     Text = parseArt.Text,
                     date = DateTime.UtcNow.ToString(),
                     Author = "Администратор",
-                    SourceInfo = parseArt.SourceInfo
+                    SourceInfo = parseArt.SourceInfo,
+                    Image = parseArt.Image
                 };
 
                 db.Articles.Add(article);
@@ -614,5 +650,123 @@ namespace Lift_application.Controllers
             
             return View();
         }
+
+        //Загрузка страницы создание категории
+        [HttpGet]
+        public ActionResult CategoryCreate()
+        {
+            return View();
+        }
+        //Отправка данных создание категории
+        [HttpPost]
+        public ActionResult CategoryCreate(Category category)
+        {
+            var artCategory = new Category
+            {
+              Name = category.Name,
+            };
+            db.Categories.Add(artCategory);
+            db.SaveChanges();
+            return Redirect("/UserPanel/CategoryCreate");
+
+        }
+
+        
+        public ActionResult DeleteCategory(int id)
+        {
+            var category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return View(db.Categories.ToList());
+            }
+            else
+            {
+                
+                db.Categories.Remove(category); db.SaveChanges();
+                return Redirect("~/UserPanel/DeleteCategory");
+            }
+            
+        }
+        [HttpGet]
+        public ActionResult ParserPublishSends(int id)
+        {
+            Category category = new();
+            ViewBag.Cats = db.Categories.ToList();
+            if (id == null) return StatusCode(404);
+            //var parseArt = parseArticles.ParseArticles.Find(id);
+            //var deskr = parseArt.Description;
+            //if (parseArt.Description.Length >= 400) deskr = parseArt.Description.Remove(400, parseArt.Description.Length - 400);
+
+            //var article = new Articles
+            //{
+            //    Title = parseArt.Title,
+            //    Description = deskr,
+            //    Text = parseArt.Text,
+            //    date = DateTime.UtcNow.ToString(),
+            //    Author = "Администратор",
+            //    SourceInfo = parseArt.SourceInfo
+            //};
+
+            //db.Articles.Add(article);
+            //db.SaveChanges();
+            var article = parseArticles.ParseArticles.Find(id);
+            return View(article);
+            //}
+        }
+
+        [HttpPost]
+        public ActionResult ParserPublishSends(ParseArticlesModel parseArticles)
+        {
+            ParseArticlesModel articlesModel = parseArticles;
+            var deskr = parseArticles.Description;
+            if (articlesModel.Description.Length >= 400) deskr = articlesModel.Description.Remove(400, articlesModel.Description.Length - 400);
+            Category category = new();
+            ViewBag.Cats = db.Categories.ToList();
+            var article = new Articles
+            {
+                Title = parseArticles.Title,
+                Description = deskr,
+                Text = parseArticles.Text,
+                date = DateTime.UtcNow.ToString(),
+                Author = "Администратор",
+                SourceInfo = parseArticles.SourceInfo,
+                Image = parseArticles.Image
+            };
+
+            db.Articles.Add(article);
+            db.SaveChanges();
+
+
+            List<string> selected = new List<string>();
+            foreach (var res in db.Categories)
+            {
+                selected.Add(Request.Form[res.Name]);
+
+            }
+            //SELECT Max(Id) FROM Articles
+            var s = db.Database.SqlQuery<int>($"SELECT Max(Id) FROM Articles");
+            int y = 0;
+            foreach (var sq in s)
+            {
+                y = Convert.ToInt32(sq);
+
+            }
+            foreach (var res in selected.ToList())
+            {
+                if (res != null)
+                {
+                    int resint = Convert.ToInt32(res);
+
+                    var dbs = db.Database.ExecuteSqlRaw($"INSERT INTO ArticlesCategory VALUES({y},{resint})");
+                    db.SaveChanges();
+                }
+
+
+            }
+            return Redirect("~/UserPanel/ParserPublish");
+            //}
+        }
+
+
     }
 }

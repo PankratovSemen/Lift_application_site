@@ -1,8 +1,10 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
     ViewData["Title"] = "Публикация статей";
+    Layout = "LA/Admin_La.cshtml";
 }
 @model Lift_application.Models.Articles;
 
@@ -32,6 +34,28 @@
     <input type="hidden" name="date" value="@DateTime.UtcNow" />
     
     <input type="hidden" name="SourceInfo" value="My"/>
+    <br />
+    @Html.LabelFor(model => model.Image, "Ссылка на изображение")
+    <br />
+    @Html.EditorFor(model => model.Image)
     
-        <input type="submit" value="Опубликовать" />
+    foreach (var td in ViewBag.Cat)
+    {
+        
+        <ul role="listbox" tabindex="0" aria-label="Category">
+            <li tabindex="-1" role="option" aria-checked="false">
+                <div class="form-check mb-0">
+                    <input tabindex="-1" id="@td.Id" name ="@td.Name"class="form-check-input" type="checkbox" value="@td.Id"><label for="@td.Id" class="form-check-label"></label>
+                    @td.Name
+                    
+                </div>
+            </li>
+            
+        </ul>
+       
+    }
+   
+    
+     <input type="submit" value="Опубликовать" />
 }
+

@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Liftapplication.Migrations
+namespace Liftapplication.Migrations.Parse
 {
     [DbContext(typeof(ParseContext))]
-    [Migration("20230201033615_parse")]
-    partial class parse
+    [Migration("20230327132040_Parseccc")]
+    partial class Parseccc
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

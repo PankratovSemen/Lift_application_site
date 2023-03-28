@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets\\Lift_application.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\css\\1.css",
+      "PackagePath": "staticwebassets\\css\\1.css"
+    },
+    {
       "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\css\\Authorization_styles.css",
       "PackagePath": "staticwebassets\\css\\Authorization_styles.css"
     },
     {
       "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\css\\Registration_style.css",
       "PackagePath": "staticwebassets\\css\\Registration_style.css"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\css\\custom.css",
+      "PackagePath": "staticwebassets\\css\\custom.css"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\css\\jquery.datetimepicker.css",
+      "PackagePath": "staticwebassets\\css\\jquery.datetimepicker.css"
     },
     {
       "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\css\\site.css",
@@ -25,6 +37,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\avatar.png",
+      "PackagePath": "staticwebassets\\img\\avatar.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\avatar04.png",
+      "PackagePath": "staticwebassets\\img\\avatar04.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\avatar2.png",
+      "PackagePath": "staticwebassets\\img\\avatar2.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\avatar3.png",
+      "PackagePath": "staticwebassets\\img\\avatar3.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\avatar5.png",
+      "PackagePath": "staticwebassets\\img\\avatar5.png"
+    },
+    {
       "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\background.jpg",
       "PackagePath": "staticwebassets\\img\\background.jpg"
     },
@@ -37,8 +69,112 @@
       "PackagePath": "staticwebassets\\img\\background2.jpg"
     },
     {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\boxed-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\boxed-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\boxed-bg.png",
+      "PackagePath": "staticwebassets\\img\\boxed-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\default-50x50.gif",
+      "PackagePath": "staticwebassets\\img\\default-50x50.gif"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\icons.png",
+      "PackagePath": "staticwebassets\\img\\icons.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\left.png",
+      "PackagePath": "staticwebassets\\img\\left.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\photo1.png",
+      "PackagePath": "staticwebassets\\img\\photo1.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\photo2.png",
+      "PackagePath": "staticwebassets\\img\\photo2.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\right.png",
+      "PackagePath": "staticwebassets\\img\\right.png"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user1-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user1-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user2-160x160.jpg",
+      "PackagePath": "staticwebassets\\img\\user2-160x160.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user3-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user3-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user4-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user4-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user5-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user5-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user6-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user6-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user7-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user7-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\img\\user8-128x128.jpg",
+      "PackagePath": "staticwebassets\\img\\user8-128x128.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
+    },
+    {
       "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\ajax.js",
       "PackagePath": "staticwebassets\\js\\ajax.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\app.js",
+      "PackagePath": "staticwebassets\\js\\app.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\app.min.js",
+      "PackagePath": "staticwebassets\\js\\app.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\custom.js",
+      "PackagePath": "staticwebassets\\js\\custom.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\demo.js",
+      "PackagePath": "staticwebassets\\js\\demo.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\jquery-1.9.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-1.9.1.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\jquery.autocomplete.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.autocomplete.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\jquery.datetimepicker.js",
+      "PackagePath": "staticwebassets\\js\\jquery.datetimepicker.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\pages\\dashboard.js",
+      "PackagePath": "staticwebassets\\js\\pages\\dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\pages\\dashboard2.js",
+      "PackagePath": "staticwebassets\\js\\pages\\dashboard2.js"
     },
     {
       "Id": "C:\\Users\\Семён\\source\\repos\\PankratovSemen\\Lift_application_site\\Lift_application\\wwwroot\\js\\site.js",

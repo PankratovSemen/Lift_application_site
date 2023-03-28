@@ -4,7 +4,7 @@
 
 @{
     ViewData["Title"] = "Главная";
-    
+
 }
 
 <!DOCTYPE html>
@@ -14,45 +14,84 @@
     <title>Главная</title>
 
     <style>
-        .brd
+        .brd {
+            background: gray;
+            padding: 20px;
+        }
+        .image-article
         {
-             background:gray;
-             padding:20px;
+            width:50%;
+            
+            padding:10px;
+            margin: 0 auto;
         }
     </style>
 </head>
 @inject SignInManager<Lift_applicationUser> SignInManager;
 @inject UserManager<Lift_applicationUser> UserManager
+
 <body>
     <h3>Материалы</h3>
+    @foreach (var cat in ViewBag.Cat)
+    {
+        <div>
+            <a href="/?categor=@cat.Id">@cat.Name</a>
+        </div>
+    }
 
+
+    @*@foreach(var f in ViewBag.cate)
+    {
+    if (f == null)
+    {
+    <p>No</p>
+    }
+    else
+    {
+    <p>@f.ToString()</p>
+    }
+
+    }*@
 
     @foreach (var phone in Model.OrderByDescending(p => p.Id).ThenBy(p => p.Id).ToList())
     {
-            
 
-        @if(phone.SourceInfo == "" || phone.SourceInfo == "My" || phone.SourceInfo =="-")
+
+        @if (phone.SourceInfo == "" || phone.SourceInfo == "My" || phone.SourceInfo == "-")
         {
-           <div class="brd">
+            <div class="brd">
                 <h2><a href="~/Home/Articles/@phone.Id">@phone.Title</a></h2>
-            <p>@Html.Raw(phone.Description) ...</p>
-
-            @if (SignInManager.IsSignedIn(User))
-            {
-                if(User.IsInRole("admin"))
+                <p>@Html.Raw(phone.Description) ...</p>
+                @if(phone.Image!=null)
                 {
-                    <a href="~/UserPanel/Delete/@phone.Id">Удалить</a>
+                    <img src="@phone.Image" class="image-article">
+                    <br />
                 }
-            }
-           </div>
-            <br/>
-            
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        <a href="~/UserPanel/Delete/@phone.Id">Удалить</a>
+                    }
+                }
+            </div>
+            <br />
+
         }
         else
         {
+
+
             <div class="brd">
                 <h2>@phone.Title</h2>
                 <p>@phone.Description ...</p>
+                @if (phone.Image != null)
+                {
+                    <img src="@phone.Image" class="image-article">
+                    <br />
+                }
+
                 <p>Источник: <a href="@phone.SourceInfo">@phone.SourceInfo</a></p>
                 @if (SignInManager.IsSignedIn(User))
                 {
@@ -64,9 +103,10 @@
             </div>
             <br />
         }
-
     }
-    
-    
+
+
+
+
 </body>
 </html>

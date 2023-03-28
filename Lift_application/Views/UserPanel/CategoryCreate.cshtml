@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "LA/Admin_La.cshtml";
+}
+@{
+    ViewData["Title"] = "Создание категории";
+}
+@model Lift_application.Models.Category;
+
+
+<title>Создание категории</title>
+
+<h1>Создание категории</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Название категории")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+        <input type="submit" value="Создать" />
+}

@@ -1,0 +1,103 @@
+﻿
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Lift_application</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    @*<link rel="stylesheet" href="~/css/1.css">*@
+</head>
+<body>
+    <ul class="admin-menu">
+        <li class="menu-heading">
+            <h3>Admin</h3>
+        </li>
+        <li>
+            <a asp-controller="UserPanel" asp-action="Publish">
+                <svg>
+                    <use xlink:href="#pages"></use>
+                </svg>
+                <span>Публикация статей</span>
+            </a>
+        </li>
+        <li>
+            <a asp-controller="UserPanel" asp-action="CreateSender">
+                <svg>
+                    <use xlink:href="#users"></use>
+                </svg>
+                <span>Рассылки</span>
+            </a>
+        </li>
+        <li>
+            <a asp-controller="UserPanel" asp-action="ParserPublish">
+                <svg>
+                    <use xlink:href="#trends"></use>
+                </svg>
+                <span>Другие источники</span>
+            </a>
+        </li>
+        <li>
+            <a href="~/Roles">
+                <svg>
+                    <use xlink:href="#collection"></use>
+                </svg>
+                <span>Роли</span>
+            </a>
+        </li>
+        <li>
+            <a asp-controller="UserPanel" asp-action="OptionsSender">
+                <svg>
+                    <use xlink:href="#comments"></use>
+                </svg>
+                <span>Настройка рассылки</span>
+            </a>
+        </li>
+    </ul>
+    <header>
+        <div id="logo" onclick="slowScroll('top')">
+            <span>Creative</span>
+        </div>
+        <div id="about">
+
+
+                <a asp-controller="Home" asp-action="Index" title="Главная" onclick="slowScroll('#Что-то')">Главная</a>
+                <a asp-controller="Home" asp-action="About" title="Что-то" onclick="slowScroll('#Что-то')">О проекте</a>
+
+                <a><partial name="_LoginPartial.cshtml" /></a>
+
+
+        </div>
+    </header>
+    <div id="top">
+        <h1>@ViewData["Title"]</h1>
+        <h3>Creative</h3>
+    </div>
+    <div class="container" id="main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/js/ajax.js"></script>
+    <script>
+        function slowScroll(id) {
+            $('html, body').animate({
+                scrollTop: $(id).offset().top
+            }, 500);
+        }
+        $(document).on("scroll", function () {
+            if ($(window).scrollTop() === 0)
+                $("header").removeClass("fixed");
+            else
+                $("header").attr("class", "fixed");
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
